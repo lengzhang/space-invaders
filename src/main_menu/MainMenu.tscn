@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main_menu/StartGameButton.gd" type="Script" id=1]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="StartGameButton" type="Button" parent="."]
+margin_left = 64.0
+margin_top = 256.0
+margin_right = 192.0
+margin_bottom = 320.0
+text = "Start Game"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="StartGameButton" to="StartGameButton" method="_on_StartGameButton_pressed"]

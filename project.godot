@@ -21,8 +21,13 @@ _global_script_class_icons={
 [application]
 
 config/name="space-invaders"
-run/main_scene="res://Sprite.tscn"
+run/main_scene="res://src/main_menu/MainMenu.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=480
+window/size/height=720
 
 [gdnative]
 
