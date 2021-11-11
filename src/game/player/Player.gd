@@ -3,6 +3,16 @@ extends KinematicBody2D
 const SPEED = 250
 const FIRE_COOL_DOWN = 0.2
 
+const SHIP_TEXTURE_0 = "res://assets/spaceshooter_ByJanaChumi/items/16.png"
+const SHIP_TEXTURE_1 = "res://assets/spaceshooter_ByJanaChumi/items/17.png"
+
+const BULLET_POWER = "res://src/game/player/bullets/Power.tscn"
+const BULLET_SHOT = "res://src/game/player/bullets/Shot.tscn"
+
+onready var Player = $"."
+onready var Ship = $"Ship"
+
+var shipMode = -1
 var maxHealth = 100
 var hp = 70
 
@@ -11,8 +21,11 @@ var fireCoolDown = FIRE_COOL_DOWN
 
 var isIn = false
 
+func _ready():
+	setShipMode(0)
+
 func _physics_process(delta):
-	
+	# Move Left or Right
 	if Input.is_action_pressed("ui_left"):
 		Velocity.x = -SPEED
 	elif Input.is_action_pressed("ui_right"):
@@ -24,7 +37,7 @@ func _physics_process(delta):
 		else:
 			var newX = Velocity.x + SPEED
 			Velocity.x = min(newX, 0);
-	
+	# Move Up or Down
 	if Input.is_action_pressed("ui_up"):
 		Velocity.y = -SPEED
 	elif Input.is_action_pressed("ui_down"):
@@ -36,9 +49,10 @@ func _physics_process(delta):
 		else:
 			var newY = Velocity.y + SPEED
 			Velocity.y = min(newY, 0);
+		
+	move_and_slide(Velocity, Vector2(0, -1))
 	
-	
-	
+	# Fire
 	if fireCoolDown < FIRE_COOL_DOWN:
 		fireCoolDown += delta
 		
@@ -46,10 +60,17 @@ func _physics_process(delta):
 		fire()
 		fireCoolDown = 0
 		
-	move_and_slide(Velocity, Vector2(0, -1))
+	# Ship Switch
+	if Input.is_action_just_pressed("ship_switch"):
+		setShipMode(0 if shipMode == 1 else 1)
+
+func onAreaEntered(area):
+	if area.get_parent().is_in_group("enemies"):
+		var enemy = area.get_parent()
+		hurt(enemy.attack)
 
 func fire():
-	var bullet = preload("res://src/game/player/PlayerBullet.tscn")
+	var bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
 	var firedBullet = bullet.instance()
 	firedBullet.position = Vector2(position.x, position.y - 24)
 	get_parent().call_deferred("add_child", firedBullet)
@@ -60,7 +81,7 @@ func hurt(damage):
 	if hp <= 0:
 		get_parent().gameOver()
 
-func onAreaEntered(area):
-	if area.get_parent().is_in_group("enemies"):
-		var enemy = area.get_parent()
-		hurt(enemy.attack)
+func setShipMode(mode):
+	if mode != shipMode:
+		shipMode = mode
+		Ship.texture = preload(SHIP_TEXTURE_0) if shipMode == 0 else preload(SHIP_TEXTURE_1)

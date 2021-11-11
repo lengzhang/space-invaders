@@ -12,9 +12,7 @@ var enemyCoolDown = 0
 func _ready():
 	lifeBar.maxValue = player.maxHealth
 	lifeBar.setHealth(player.hp)
-	
-	
-	
+
 func _process(delta):
 	enemyCoolDown -= delta
 	if enemyCoolDown < 0:

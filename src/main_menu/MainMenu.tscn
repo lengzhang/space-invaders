@@ -5,9 +5,9 @@
 [node name="MainMenu" type="Node2D"]
 
 [node name="StartGameButton" type="Button" parent="."]
-margin_left = 64.0
+margin_left = 192.0
 margin_top = 256.0
-margin_right = 192.0
+margin_right = 320.0
 margin_bottom = 320.0
 text = "Start Game"
 script = ExtResource( 1 )
