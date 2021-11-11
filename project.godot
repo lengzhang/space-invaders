@@ -33,6 +33,10 @@ window/size/height=720
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
 
+[global]
+
+resize=false
+
 [input]
 
 ship_switch={

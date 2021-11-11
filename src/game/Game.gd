@@ -2,6 +2,8 @@ extends Node2D
 
 var randomNumberGenerator = RandomNumberGenerator.new()
 
+onready var hpBar = $"Wall/GUI/Bars/HPBar"
+
 onready var lifeBar = $"Wall/GUI/Bars/LifeBar"
 
 onready var player = $"Player"
@@ -24,8 +26,8 @@ var waveCount = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	lifeBar.maxValue = player.maxHealth
-	lifeBar.setHealth(player.hp)
+	hpBar.maxHPValue = player.maxHealth
+	hpBar.setHealth(player.hp)
 
 func _process(delta):
 	level = (
@@ -45,8 +47,8 @@ func _process(delta):
 		)
 		generateEnemy()
 	
-	if player.hp != lifeBar.value:
-		lifeBar.setHealth(player.hp)
+	if player.hp != hpBar.value:
+		hpBar.setHealth(player.hp)
 		
 
 func generateEnemy():

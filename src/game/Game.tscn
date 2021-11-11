@@ -20,9 +20,12 @@ __meta__ = {
 }
 
 [node name="Wall" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 0.799999 )
 
 [node name="GUI" parent="Wall" instance=ExtResource( 6 )]
+anchor_right = 0.0
+margin_top = 704.0
+margin_right = 480.0
+margin_bottom = 720.0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 256, 688 )
