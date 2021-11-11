@@ -4,6 +4,7 @@ var randomNumberGenerator = RandomNumberGenerator.new()
 
 onready var HPBar = $Wall/GUI/VBoxContainer/HPBar
 onready var Score = $Wall/GUI/VBoxContainer/Info/Score
+onready var PausePopup = $PausePopup
 
 onready var player = $"Player"
 
@@ -94,6 +95,9 @@ func generateEnemy():
 func increaseScore(value):
 	score += value
 	Score.text = String(score)
+	
+func pause():
+	PausePopup.pause()
 
 func gameOver():
 	get_tree().change_scene("res://src/main_menu/MainMenu.tscn")
