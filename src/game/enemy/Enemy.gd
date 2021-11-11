@@ -6,12 +6,11 @@ const attack = 10
 var hp = 100
 
 var isInGame = false
-
-func _init():
-	add_to_group("enemies")
 	
 func _ready():
+	add_to_group("enemies")
 	isInGame = false
+
 
 func _physics_process(delta):
 	move_and_collide(Vector2.DOWN * delta * MOVE_SPEED)

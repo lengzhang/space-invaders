@@ -12,12 +12,12 @@ const BULLET_SHOT = "res://src/game/player/bullets/Shot.tscn"
 onready var Player = $"."
 onready var Ship = $"Ship"
 
-var shipMode = -1
-var maxHealth = 100
-var hp = 70
+onready var shipMode = -1
+onready var maxHealth = 100
+onready var hp = 100
 
-var Velocity = Vector2()
-var fireCoolDown = FIRE_COOL_DOWN
+onready var Velocity = Vector2()
+onready var fireCoolDown = FIRE_COOL_DOWN
 
 var isIn = false
 
