@@ -9,7 +9,9 @@ onready var displayWidth = get_viewport_rect().size[0]
 onready var sectionWidth = float(displayWidth / sectionSize)
 onready var sectionTrim = sectionWidth / 6
 
-onready var Enemy = preload("res://src/game/enemy/Enemy.tscn")
+
+onready var enemies = [preload("res://src/game/enemy/Normal.tscn")]
+
 var enemyCoolDown = 0
 var enemyCount = 0
 
@@ -46,7 +48,7 @@ func generateEnemy():
 			sectionIndexes.append(pos)
 	
 	for pos in sectionIndexes:	
-		var enemy = Enemy.instance()
+		var enemy = enemies[0].instance()
 		var xOffset = rand_range((
 			sectionWidth / 2 if pos == 0
 			else sectionTrim

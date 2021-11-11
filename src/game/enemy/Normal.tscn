@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/spaceshooter_ByJanaChumi/items/1.png" type="Texture" id=1]
-[ext_resource path="res://src/game/enemy/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://src/game/enemy/Normal.gd" type="Script" id=2]
 
-[node name="Enemy" type="KinematicBody2D" groups=["enemies"]]
+[node name="Normal" type="KinematicBody2D" groups=["enemies"]]
 z_index = 5
 collision_layer = 4
 collision_mask = 0

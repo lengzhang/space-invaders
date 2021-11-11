@@ -13,6 +13,7 @@ onready var Player = $"."
 onready var Ship = $"Ship"
 
 onready var shipMode = -1
+onready var switchCoolDown = 0
 onready var maxHealth = 100
 onready var hp = 100
 
@@ -53,16 +54,16 @@ func _physics_process(delta):
 	move_and_slide(Velocity, Vector2(0, -1))
 	
 	# Fire
-	if fireCoolDown < FIRE_COOL_DOWN:
-		fireCoolDown += delta
-		
+	fireCoolDown += delta	
 	if Input.is_action_pressed("ui_accept") and fireCoolDown >= FIRE_COOL_DOWN:
 		fire()
 		fireCoolDown = 0
 		
 	# Ship Switch
-	if Input.is_action_just_pressed("ship_switch"):
+	switchCoolDown += delta
+	if Input.is_action_just_pressed("ship_switch") and switchCoolDown >= 1:
 		setShipMode(0 if shipMode == 1 else 1)
+		switchCoolDown = 0
 
 func onAreaEntered(area):
 	if area.get_parent().is_in_group("enemies"):
