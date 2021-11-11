@@ -10,20 +10,20 @@ bg_color = Color( 0.490196, 0.490196, 0.490196, 1 )
 
 [node name="GUI" type="MarginContainer"]
 anchor_right = 1.0
-anchor_bottom = 0.022
-margin_bottom = 0.159999
+anchor_bottom = 0.05
+rect_min_size = Vector2( 480, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bars" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 480.0
-margin_bottom = 16.0
+margin_bottom = 36.0
 
-[node name="HPBar" type="ProgressBar" parent="Bars"]
+[node name="HPBar" type="ProgressBar" parent="VBoxContainer"]
 margin_right = 480.0
 margin_bottom = 16.0
-rect_min_size = Vector2( 0, 16 )
+rect_min_size = Vector2( 480, 16 )
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 value = 50.0
@@ -33,7 +33,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Bars/HPBar"]
+[node name="HPLabel" type="Label" parent="VBoxContainer/HPBar"]
 anchor_left = 0.433
 anchor_right = 0.483
 anchor_bottom = 1.0
@@ -46,7 +46,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="Bars/HPBar"]
+[node name="Value" type="Label" parent="VBoxContainer/HPBar"]
 anchor_left = 0.475
 anchor_right = 0.525
 anchor_bottom = 1.0
@@ -60,7 +60,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sign" type="Label" parent="Bars/HPBar"]
+[node name="Sign" type="Label" parent="VBoxContainer/HPBar"]
 anchor_left = 0.525
 anchor_right = 0.55
 anchor_bottom = 1.0
@@ -71,3 +71,25 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Info" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 20.0
+margin_right = 480.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 480, 16 )
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/Info"]
+margin_top = 1.0
+margin_right = 39.0
+margin_bottom = 15.0
+text = "Score:"
+valign = 2
+
+[node name="Score" type="Label" parent="VBoxContainer/Info"]
+margin_left = 43.0
+margin_right = 51.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 16 )
+text = "0"
+align = 2
+valign = 2

@@ -16,12 +16,10 @@ func onExitedBody(body):
 
 func onEnteredArea(area):
 	var parent = area.get_parent()
-	print(parent.name)
 	if parent.is_in_group("enemies"):
-		var enemy = area.get_parent()
-		enemy.hurt(attack)
+		parent.hurt(attack)
 		queue_free()
 	elif parent.is_in_group("enemy-bullets"):
-		parent.destroy()
+		parent.hurt()
 		queue_free()
 		

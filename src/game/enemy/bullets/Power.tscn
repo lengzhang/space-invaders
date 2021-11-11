@@ -21,5 +21,4 @@ rotation = 3.14159
 polygon = PoolVector2Array( 0, -8, -8, 0, 8, 0 )
 
 [connection signal="area_entered" from="HitBox" to="." method="onEnteredArea"]
-[connection signal="area_exited" from="HitBox" to="." method="onExitedArea"]
 [connection signal="body_exited" from="HitBox" to="." method="onExitedBody"]

@@ -23,7 +23,7 @@ __meta__ = {
 
 [node name="GUI" parent="Wall" instance=ExtResource( 6 )]
 anchor_right = 0.0
-margin_top = 704.0
+margin_top = 684.0
 margin_right = 480.0
 margin_bottom = 720.0
 

@@ -1,14 +1,17 @@
 extends KinematicBody2D
 
 const MOVE_SPEED = 25
+const MAX_HP = 100
 const FIRE_COOL_DOWN = 1.5
+const attack = 10
 
 const BULLET = "res://src/game/enemy/bullets/Power.tscn"
 
-const attack = 10
+onready var parent = get_parent()
+
 onready var fireCoolDown = FIRE_COOL_DOWN
 
-var hp = 100
+var hp = MAX_HP
 
 var isInGame = false
 	
@@ -39,6 +42,8 @@ func hurt(damage):
 	hp -= damage
 	if hp <= 0:
 		kill()
+		if parent.has_method("increaseScore"):
+			parent.increaseScore(MAX_HP)
 
 func onExitedBody(body):
 	if body.name == "Wall":

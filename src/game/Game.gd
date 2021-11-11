@@ -2,13 +2,13 @@ extends Node2D
 
 var randomNumberGenerator = RandomNumberGenerator.new()
 
-onready var hpBar = $"Wall/GUI/Bars/HPBar"
-
-onready var lifeBar = $"Wall/GUI/Bars/LifeBar"
+onready var HPBar = $Wall/GUI/VBoxContainer/HPBar
+onready var Score = $Wall/GUI/VBoxContainer/Info/Score
 
 onready var player = $"Player"
 
 onready var level = 1
+onready var score = 0
 
 var sectionSize = 8
 onready var displayWidth = get_viewport_rect().size[0]
@@ -26,8 +26,8 @@ var waveCount = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hpBar.maxHPValue = player.maxHealth
-	hpBar.setHealth(player.hp)
+	HPBar.maxHPValue = player.maxHealth
+	HPBar.setHealth(player.hp)
 
 func _process(delta):
 	level = (
@@ -47,8 +47,8 @@ func _process(delta):
 		)
 		generateEnemy()
 	
-	if player.hp != hpBar.value:
-		hpBar.setHealth(player.hp)
+	if player.hp != HPBar.value:
+		HPBar.setHealth(player.hp)
 		
 
 func generateEnemy():
@@ -90,6 +90,10 @@ func generateEnemy():
 		call_deferred("add_child", enemy)
 		enemyCount += 1
 	waveCount += 1
+
+func increaseScore(value):
+	score += value
+	Score.text = String(score)
 
 func gameOver():
 	get_tree().change_scene("res://src/main_menu/MainMenu.tscn")
