@@ -1,19 +1,26 @@
 extends Node2D
 
+var randomNumberGenerator = RandomNumberGenerator.new()
+
 onready var lifeBar = $"Wall/GUI/Bars/LifeBar"
 
 onready var player = $"Player"
+
+onready var level = 1
 
 var sectionSize = 8
 onready var displayWidth = get_viewport_rect().size[0]
 onready var sectionWidth = float(displayWidth / sectionSize)
 onready var sectionTrim = sectionWidth / 6
 
-
-onready var enemies = [preload("res://src/game/enemy/Normal.tscn")]
+onready var enemies = [
+	preload("res://src/game/enemy/Normal.tscn"),
+	preload("res://src/game/enemy/Power.tscn")
+]
 
 var enemyCoolDown = 0
 var enemyCount = 0
+var waveCount = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,11 +28,19 @@ func _ready():
 	lifeBar.setHealth(player.hp)
 
 func _process(delta):
+	level = (
+		1 if waveCount < 5
+		else 2 if waveCount < 10
+		else 3 if waveCount < 20
+		else 4 if waveCount < 35
+		else 5
+	)
+	
 	enemyCoolDown -= delta
 	if enemyCoolDown < 0:
 		enemyCoolDown = (
-			5 if enemyCount < 5
-			else 4 if enemyCount < 30
+			5 if level <= 2
+			else 4 if level <= 4
 			else 3 
 		)
 		generateEnemy()
@@ -35,21 +50,33 @@ func _process(delta):
 		
 
 func generateEnemy():
+	randomNumberGenerator.randomize()
+	
 	var sectionIndexes = []
-	var numOfEnemies = rand_range(1, (
-		1 if enemyCount < 5
-		else 2 if enemyCount < 10
-		else 3
-	))
+	var numOfEnemies = (
+		randomNumberGenerator.randi_range(1, 2) if level <= 2
+		else randomNumberGenerator.randi_range(2, 3) if level <= 4
+		else randomNumberGenerator.randi_range(3, 4)
+	)
 	
 	while sectionIndexes.size() < numOfEnemies:
-		var pos = round(rand_range(0, sectionSize - 1))
+		var pos = round(randomNumberGenerator.randi_range(0, sectionSize - 1))
 		if !sectionIndexes.has(pos):
 			sectionIndexes.append(pos)
 	
-	for pos in sectionIndexes:	
+	for pos in sectionIndexes:
+		
 		var enemy = enemies[0].instance()
-		var xOffset = rand_range((
+		
+		var index = (
+			0 if level <= 1
+			else randomNumberGenerator.randi_range(0, 1) if level <= 3
+			else randomNumberGenerator.randi_range(0, 1)
+		)
+		enemy = enemies[index].instance()
+			
+		
+		var xOffset = randomNumberGenerator.randf_range((
 			sectionWidth / 2 if pos == 0
 			else sectionTrim
 		), (
@@ -59,8 +86,8 @@ func generateEnemy():
 		enemy.position = Vector2(sectionWidth * pos + xOffset, position.y)
 
 		call_deferred("add_child", enemy)
-		
 		enemyCount += 1
+	waveCount += 1
 
 func gameOver():
 	get_tree().change_scene("res://src/main_menu/MainMenu.tscn")

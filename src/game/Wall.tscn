@@ -27,3 +27,17 @@ shape = SubResource( 2 )
 [node name="bottom" type="CollisionShape2D" parent="."]
 position = Vector2( 240, 728 )
 shape = SubResource( 3 )
+
+[node name="top-area" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="top" type="CollisionShape2D" parent="top-area"]
+position = Vector2( 240, 32 )
+shape = SubResource( 2 )
+
+[node name="bottom-area" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="bottom" type="CollisionShape2D" parent="bottom-area"]
+position = Vector2( 240, 728 )
+shape = SubResource( 3 )
