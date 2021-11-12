@@ -1,4 +1,4 @@
-extends GridContainer
+extends VBoxContainer
 
 const COLOR_UNSELECTED = Color("808080")
 const COLOR_SELECTED = Color("64a500")

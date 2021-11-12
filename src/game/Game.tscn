@@ -11,10 +11,10 @@
 script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = -128.0
-margin_top = -264.0
-margin_right = 592.0
-margin_bottom = 1016.0
+margin_left = -120.0
+margin_top = -280.0
+margin_right = 600.0
+margin_bottom = 1000.0
 texture = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false

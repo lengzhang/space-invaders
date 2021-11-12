@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/spaceshooter_ByJanaChumi/background.png" type="Texture" id=1]
+[ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/how_to_play/HowToPlay.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 2 )
+
+[node name="HowToPlay" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_left = -120.0
+margin_top = -280.0
+margin_right = 600.0
+margin_bottom = 1000.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 688.0
+margin_right = 56.0
+margin_bottom = 712.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 1 )
+text = "< ESC"
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 416.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 352, 592 )
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[table=3]
+	[cell][b]KEY[/b][/cell]		[cell]        [/cell]		[cell][b]ACTION[/b][/cell]
+	[cell]UP[/cell]					[cell][/cell]				[cell]Move up[/cell]
+	[cell]DOWN[/cell]			[cell][/cell]				[cell]Move down[/cell]
+	[cell]LEFT[/cell]				[cell][/cell]				[cell]Move left[/cell]
+	[cell]RIGHT[/cell]			[cell][/cell]				[cell]Move right[/cell]
+	[cell]Space[/cell]				[cell][/cell]				[cell]Fire bullet[/cell]
+	[cell]X[/cell]						[cell][/cell]				[cell]Switch ship mode[/cell]
+[/table]"
+text = "KEY        ACTIONUPMove upDOWNMove downLEFTMove leftRIGHTMove rightSpaceFire bulletXSwitch ship mode"
+__meta__ = {
+"_edit_use_anchors_": false
+}
