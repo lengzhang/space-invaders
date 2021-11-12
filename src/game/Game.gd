@@ -12,13 +12,14 @@ onready var level = 1
 onready var score = 0
 
 var sectionSize = 8
-onready var displayWidth = get_viewport_rect().size[0]
-onready var sectionWidth = float(displayWidth / sectionSize)
+onready var viewportSize = get_viewport_rect().size
+onready var sectionWidth = float(viewportSize[0] / sectionSize)
 onready var sectionTrim = sectionWidth / 6
 
 onready var enemies = [
 	preload("res://src/game/enemy/Normal.tscn"),
-	preload("res://src/game/enemy/Power.tscn")
+	preload("res://src/game/enemy/Power.tscn"),
+	preload("res://src/game/enemy/laser/Laser.tscn")
 ]
 
 var enemyCoolDown = 0
@@ -69,14 +70,12 @@ func generateEnemy():
 	
 	for pos in sectionIndexes:
 		
-		var enemy = enemies[0].instance()
-		
 		var index = (
 			0 if level <= 1
 			else randomNumberGenerator.randi_range(0, 1) if level <= 3
-			else randomNumberGenerator.randi_range(0, 1)
+			else randomNumberGenerator.randi_range(0, 2)
 		)
-		enemy = enemies[index].instance()
+		var enemy = enemies[index].instance()
 			
 		
 		var xOffset = randomNumberGenerator.randf_range((
