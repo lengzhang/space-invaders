@@ -85,10 +85,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HowToPlay" type="ColorRect" parent="Menu"]
+[node name="Scores" type="ColorRect" parent="Menu"]
 margin_top = 36.0
 margin_right = 208.0
 margin_bottom = 68.0
+rect_min_size = Vector2( 208, 32 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 0.501961, 0.501961, 0.501961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu/Scores"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -104.0
+margin_top = -16.0
+margin_right = 104.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 208, 32 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 1 )
+text = "Scores"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HowToPlay" type="ColorRect" parent="Menu"]
+margin_top = 72.0
+margin_right = 208.0
+margin_bottom = 104.0
 rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -118,9 +150,9 @@ __meta__ = {
 }
 
 [node name="Quit" type="ColorRect" parent="Menu"]
-margin_top = 72.0
+margin_top = 108.0
 margin_right = 208.0
-margin_bottom = 104.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 3

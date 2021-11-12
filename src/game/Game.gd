@@ -1,5 +1,7 @@
 extends Node2D
 
+var scoreFilePath = "user://scores.cfg"
+
 var randomNumberGenerator = RandomNumberGenerator.new()
 
 onready var HPBar = $Wall/GUI/VBoxContainer/HPBar
@@ -99,4 +101,42 @@ func pause():
 	PausePopup.pause()
 
 func gameOver():
+	var config = ConfigFile.new()
+	
+	var err = config.load(scoreFilePath)
+	if err != OK:
+		config = ConfigFile.new()
+	
+	var time = OS.get_datetime()
+
+	var timeStr = (
+		String(time.get("year"))
+		+ "-" + String(time.get("month"))
+		+ "-" + String(time.get("day"))
+		+ " " + String(time.get("hour"))
+		+ ":" + String(time.get("minute"))
+		+ ":" + String(time.get("second"))
+	)
+	
+	config.set_value("scores", timeStr, String(score))
+	
+	config.save(scoreFilePath)
+	
 	get_tree().change_scene("res://src/main_menu/MainMenu.tscn")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
