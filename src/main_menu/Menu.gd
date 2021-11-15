@@ -2,6 +2,7 @@ extends VBoxContainer
 
 const COLOR_UNSELECTED = Color("808080")
 const COLOR_SELECTED = Color("64a500")
+const COLOR_RED = Color("ff4444")
 
 onready var GameScene = preload("res://src/game/Game.tscn")
 onready var ScoresScene = preload("res://src/scores/Scores.tscn")
@@ -46,3 +47,7 @@ func setSelectedMenu(index):
 	
 	for i in selections.size():
 		selections[i].color = COLOR_SELECTED if index == i else COLOR_UNSELECTED
+		if index != 3:
+			selections[3].color = COLOR_RED
+#
+			 
