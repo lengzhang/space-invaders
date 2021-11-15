@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const SPEED = 250
 const FIRE_COOL_DOWN = 0.2
+const DURATION_POWERUP = 5
 
 const SHIP_TEXTURE_0 = "res://assets/spaceshooter_ByJanaChumi/items/16.png"
 const SHIP_TEXTURE_1 = "res://assets/spaceshooter_ByJanaChumi/items/17.png"
@@ -19,8 +20,10 @@ onready var hp = 100
 
 onready var Velocity = Vector2()
 onready var fireCoolDown = FIRE_COOL_DOWN
+onready var powerUpTimeLeft = 0
 
 var isIn = false
+var hasPowerUp = false
 
 func _ready():
 	setShipMode(0)
@@ -64,23 +67,62 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ship_switch") and switchCoolDown >= 1:
 		setShipMode(0 if shipMode == 1 else 1)
 		switchCoolDown = 0
+		
+	# Timer for Damage PowerUp
+	if hasPowerUp:
+		powerUpTimeLeft += delta
+		if DURATION_POWERUP <= powerUpTimeLeft:
+			hasPowerUp = false
+
 
 func onAreaEntered(area):
 	if area.get_parent().is_in_group("enemies"):
 		var enemy = area.get_parent()
 		hurt(enemy.attack)
+	if area.get_parent().is_in_group("HPUp"):
+		var powerup = area.get_parent()
+		heal(powerup.HEALTH_BOOST)
+		powerup.destroy()
+	if area.get_parent().is_in_group("SuperShot"):
+		var powerup = area.get_parent()
+		powerUpTimeLeft = 0
+		hasPowerUp = true
+		powerup.destroy()
 
 func fire():
-	var bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
-	var firedBullet = bullet.instance()
-	firedBullet.position = Vector2(position.x, position.y - 24)
-	get_parent().call_deferred("add_child", firedBullet)
+	var bullet
+	var firedBullet
+	if hasPowerUp:
+		bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
+		firedBullet = bullet.instance()
+		firedBullet.position = Vector2(position.x, position.y - 24)
+		get_parent().call_deferred("add_child", firedBullet)
+		bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
+		firedBullet = bullet.instance()
+		firedBullet._init("left")
+		firedBullet.position = Vector2(position.x, position.y - 24)
+		get_parent().call_deferred("add_child", firedBullet)
+		bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
+		firedBullet = bullet.instance()
+		firedBullet._init("right")
+		firedBullet.position = Vector2(position.x, position.y - 24)
+		get_parent().call_deferred("add_child", firedBullet)
+	else:
+		bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
+		firedBullet = bullet.instance()
+		firedBullet.position = Vector2(position.x, position.y - 24)
+		get_parent().call_deferred("add_child", firedBullet)
 	
 func hurt(damage):
 	hp -= damage
 	hp = max(hp, 0)
 	if hp <= 0:
 		get_parent().gameOver()
+	
+func heal(health):
+	hp += health
+	if hp >= maxHealth:
+		hp = maxHealth
 
 func setShipMode(mode):
 	if mode != shipMode:

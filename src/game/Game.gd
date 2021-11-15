@@ -24,6 +24,11 @@ onready var enemies = [
 	preload("res://src/game/enemy/laser/Laser.tscn")
 ]
 
+onready var powerups = [
+	preload("res://src/game/powerups/HPUp.tscn"),
+	preload("res://src/game/powerups/SuperShot.tscn")
+]
+
 var enemyCoolDown = 0
 var enemyCount = 0
 var waveCount = 0
@@ -50,6 +55,7 @@ func _process(delta):
 			else 3 
 		)
 		generateEnemy()
+		generatePowerups()
 	
 	if player.hp != HPBar.value:
 		HPBar.setHealth(player.hp)
@@ -92,6 +98,42 @@ func generateEnemy():
 		call_deferred("add_child", enemy)
 		enemyCount += 1
 	waveCount += 1
+
+func generatePowerups():
+	randomNumberGenerator.randomize()
+	
+	var sectionIndexes = []
+	var numOfPowerUps = (
+		randomNumberGenerator.randi_range(0, 1) if level <= 2
+		else randomNumberGenerator.randi_range(1, 1) if level <= 4
+		else randomNumberGenerator.randi_range(1, 3)
+	)
+	
+	while sectionIndexes.size() < numOfPowerUps:
+		var pos = round(randomNumberGenerator.randi_range(0, sectionSize - 1))
+		if !sectionIndexes.has(pos):
+			sectionIndexes.append(pos)
+	
+	for pos in sectionIndexes:
+		
+		var index = (
+			randomNumberGenerator.randi_range(0, 1) if level <= 1
+			else randomNumberGenerator.randi_range(0, 2) if level <= 3
+			else randomNumberGenerator.randi_range(0, 3)
+		)
+		if index <= 1:
+			var powerUp = powerups[index].instance()
+				
+			var xOffset = randomNumberGenerator.randf_range((
+				sectionWidth / 2 if pos == 0
+				else sectionTrim
+			), (
+				sectionWidth - sectionWidth / 2 if pos == sectionSize - 1
+				else sectionWidth - sectionTrim
+			))
+			powerUp.position = Vector2(sectionWidth * pos + xOffset, position.y)
+
+			call_deferred("add_child", powerUp)
 
 func increaseScore(value):
 	score += value

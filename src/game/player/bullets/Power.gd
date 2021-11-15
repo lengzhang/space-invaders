@@ -1,14 +1,19 @@
 extends KinematicBody2D
 
-const MOVE_SPEED = 300
+var MOVE_SPEED = 300
+var attack = 10
+var direction: String
 
-const attack = 10
-
-func _ready():
+func _init(path = "middle"):
+	direction = path
 	add_to_group("player-bullets")
 
 func _physics_process(delta):
 	move_and_collide(Vector2.UP * delta * MOVE_SPEED)
+	if (direction == "left"):
+		move_and_collide(Vector2.LEFT * delta * MOVE_SPEED * 1/6)
+	if (direction == "right"):
+		move_and_collide(Vector2.RIGHT * delta * MOVE_SPEED * 1/6)
 
 func onExitedBody(body):
 	if (body.name == 'Wall'):

@@ -6,12 +6,18 @@ const MAX_HIT_COUNT = 3
 const attack = 5
 
 var hitCount = MAX_HIT_COUNT
+var direction: String
 
-func _ready():
+func _init(path = "middle"):
+	direction = path
 	add_to_group("player-bullets")
 
 func _physics_process(delta):
 	move_and_collide(Vector2.UP * delta * MOVE_SPEED)
+	if (direction == "left"):
+		move_and_collide(Vector2.LEFT * delta * MOVE_SPEED * 1/6)
+	if (direction == "right"):
+		move_and_collide(Vector2.RIGHT * delta * MOVE_SPEED * 1/6)
 
 func onExitedBody(body):
 	if (body.name == 'Wall'):
