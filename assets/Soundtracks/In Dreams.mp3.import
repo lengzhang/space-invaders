@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/In Dreams.mp3-0ebb6090b08498cc2236d30cbe64c8a4.mp3str"
+
+[deps]
+
+source_file="res://assets/Soundtracks/In Dreams.mp3"
+dest_files=[ "res://.import/In Dreams.mp3-0ebb6090b08498cc2236d30cbe64c8a4.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

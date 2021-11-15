@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/draft-monk-ambience.mp3-64819208a7083b08cf855a568be2a006.mp3str"
+
+[deps]
+
+source_file="res://assets/Soundtracks/draft-monk-ambience.mp3"
+dest_files=[ "res://.import/draft-monk-ambience.mp3-64819208a7083b08cf855a568be2a006.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

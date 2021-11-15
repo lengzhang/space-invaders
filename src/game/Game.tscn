@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/game/pause/PausePopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/game/player/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/game/Game.gd" type="Script" id=4]
 [ext_resource path="res://assets/spaceshooter_ByJanaChumi/background.png" type="Texture" id=5]
 [ext_resource path="res://src/gui/GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/Soundtracks/draft-monk-ambience.mp3" type="AudioStream" id=7]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
@@ -36,3 +37,7 @@ margin_left = 240.0
 margin_top = 342.0
 margin_right = 240.0
 margin_bottom = 342.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true

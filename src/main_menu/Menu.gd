@@ -6,23 +6,27 @@ const COLOR_RED = Color("ff4444")
 
 onready var GameScene = preload("res://src/game/Game.tscn")
 onready var ScoresScene = preload("res://src/scores/Scores.tscn")
+onready var Credit = preload("res://src/Credit/Credit.tscn")
 onready var HowToPlayScene = preload("res://src/how_to_play/HowToPlay.tscn")
+
+
 
 onready var Menu = self
 
-onready var selections = [$NewGame, $Scores, $HowToPlay, $Quit]
+onready var selections = [$NewGame, $Scores, $HowToPlay, $Credit, $Quit]
 
-const MENU_LENGTH = 4
+const MENU_LENGTH = 5
 var selectedMenu = 0
 
 func _ready():
 	setSelectedMenu(0)
 
+		
 func _input(event):
 	if Input.is_action_just_pressed("ui_up"):
 		setSelectedMenu(MENU_LENGTH - 1 if selectedMenu == 0 else selectedMenu - 1)
 	elif Input.is_action_just_pressed("ui_down"):
-		setSelectedMenu(0if selectedMenu == MENU_LENGTH - 1 else selectedMenu + 1)
+		setSelectedMenu(0 if selectedMenu == MENU_LENGTH - 1 else selectedMenu + 1)
 	elif Input.is_action_just_pressed("ui_accept"):
 		select()
 
@@ -40,6 +44,8 @@ func select():
 			get_tree().change_scene_to(HowToPlayScene)
 		# Quit
 		3:
+			get_tree().change_scene_to(Credit)
+		4:
 			get_tree().quit()
 
 func setSelectedMenu(index):
@@ -47,7 +53,11 @@ func setSelectedMenu(index):
 	
 	for i in selections.size():
 		selections[i].color = COLOR_SELECTED if index == i else COLOR_UNSELECTED
-		if index != 3:
-			selections[3].color = COLOR_RED
-#
+		if index != 4:
+			selections[4].color = COLOR_RED
+			
+
+
+
+
 			 
