@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/how_to_play/HowToPlay.gd" type="Script" id=3]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
 
 [node name="Credit" type="Node2D"]
@@ -22,20 +22,23 @@ __meta__ = {
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 60.0
-margin_top = 49.0
+margin_top = 52.0
 margin_right = 416.0
-margin_bottom = 680.0
+margin_bottom = 683.0
 text = "Soundtrack 1:
 In Dreams by Scott Buckley | www.scottbuckley.com.au
 Music promoted by https://www.chosic.com/free-music/all/
 Attribution 4.0 International (CC BY 4.0)
 https://creativecommons.org/licenses/by/4.0/ 
 ___________________________________________________________
+
 Soundtrack2:
 Music: https://www.chosic.com/free-music/all/ 
 ___________________________________________________________
+
 Made by:
 Leng Zhang, Long Nguyen, Davis Tong
+
 "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -51,7 +54,7 @@ margin_right = 56.0
 margin_bottom = 712.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 1 )
 text = "< ESC"
 valign = 2
 __meta__ = {
