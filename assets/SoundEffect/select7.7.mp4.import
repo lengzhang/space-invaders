@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/select7.7.wav-8066d2a06b03dc6800d1677cb856d3b9.mp3str"
+
+[deps]
+
+source_file="res://assets/SoundEffect/select7.7.wav"
+dest_files=[ "res://.import/select7.7.wav-8066d2a06b03dc6800d1677cb856d3b9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

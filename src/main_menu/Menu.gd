@@ -8,6 +8,9 @@ onready var GameScene = preload("res://src/game/Game.tscn")
 onready var ScoresScene = preload("res://src/scores/Scores.tscn")
 onready var Credit = preload("res://src/Credit/Credit.tscn")
 onready var HowToPlayScene = preload("res://src/how_to_play/HowToPlay.tscn")
+onready var player = AudioStreamPlayer.new()
+
+onready var counter = 0
 
 
 
@@ -19,7 +22,11 @@ const MENU_LENGTH = 5
 var selectedMenu = 0
 
 func _ready():
+	self.add_child(player)
+	player.stream = load("res://assets/SoundEffect/select7.wav")
 	setSelectedMenu(0)
+	
+	
 
 		
 func _input(event):
@@ -33,31 +40,33 @@ func _input(event):
 
 func select():
 	match selectedMenu:
-		# New Game
 		0:
+			# New Game
 			get_tree().change_scene_to(GameScene)
-		# Scores
 		1:
+			# Scores
 			get_tree().change_scene_to(ScoresScene)
-		# How To Play?
 		2:
+			# How To Play
 			get_tree().change_scene_to(HowToPlayScene)
-		# Quit
 		3:
+			# Credit
 			get_tree().change_scene_to(Credit)
 		4:
+			# Quit
 			get_tree().quit()
 
 func setSelectedMenu(index):
 	selectedMenu = index
-	
 	for i in selections.size():
+		
+		if counter >= 6:
+			player.play()
+			
+		counter = counter + 1
+		
 		selections[i].color = COLOR_SELECTED if index == i else COLOR_UNSELECTED
+		
 		if index != 4:
 			selections[4].color = COLOR_RED
-			
 
-
-
-
-			 

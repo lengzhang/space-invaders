@@ -18,6 +18,10 @@ onready var viewportSize = get_viewport_rect().size
 onready var sectionWidth = float(viewportSize[0] / sectionSize)
 onready var sectionTrim = sectionWidth / 6
 
+#Sound Effects
+onready var coinSoundEffect = AudioStreamPlayer.new()
+onready var startGameSoundEffect = AudioStreamPlayer.new()
+
 onready var enemies = [
 	preload("res://src/game/enemy/Normal.tscn"),
 	preload("res://src/game/enemy/Power.tscn"),
@@ -37,6 +41,11 @@ var waveCount = 0
 func _ready():
 	HPBar.maxHPValue = player.maxHealth
 	HPBar.setHealth(player.hp)
+	self.add_child(coinSoundEffect)
+	coinSoundEffect.stream = load("res://assets/SoundEffect/coin1.wav")
+	self.add_child(startGameSoundEffect)
+	startGameSoundEffect.stream = load("res://assets/SoundEffect/startGame.wav")
+	startGameSoundEffect.play()
 
 func _process(delta):
 	level = (
@@ -63,7 +72,7 @@ func _process(delta):
 
 func generateEnemy():
 	randomNumberGenerator.randomize()
-	
+
 	var sectionIndexes = []
 	var numOfEnemies = (
 		randomNumberGenerator.randi_range(1, 2) if level <= 2
@@ -98,6 +107,8 @@ func generateEnemy():
 		call_deferred("add_child", enemy)
 		enemyCount += 1
 	waveCount += 1
+	
+
 
 func generatePowerups():
 	randomNumberGenerator.randomize()
@@ -136,6 +147,8 @@ func generatePowerups():
 			call_deferred("add_child", powerUp)
 
 func increaseScore(value):
+	coinSoundEffect.volume_db = -20
+	coinSoundEffect.play()
 	score += value
 	Score.text = String(score)
 	
@@ -143,6 +156,7 @@ func pause():
 	PausePopup.pause()
 
 func gameOver():
+	
 	var config = ConfigFile.new()
 	
 	var err = config.load(scoreFilePath)

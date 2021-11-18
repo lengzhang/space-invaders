@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const SPEED = 250
 const FIRE_COOL_DOWN = 0.2
-const DURATION_POWERUP = 5
+const DURATION_POWERUP = 30
 
 const SHIP_TEXTURE_0 = "res://assets/spaceshooter_ByJanaChumi/items/16.png"
 const SHIP_TEXTURE_1 = "res://assets/spaceshooter_ByJanaChumi/items/17.png"
@@ -22,11 +22,19 @@ onready var Velocity = Vector2()
 onready var fireCoolDown = FIRE_COOL_DOWN
 onready var powerUpTimeLeft = 0
 
+# Sound Effect
+onready var fireSoundEffect = AudioStreamPlayer.new()
+onready var healSoundEffect = AudioStreamPlayer.new()
+
 var isIn = false
 var hasPowerUp = false
 
 func _ready():
 	setShipMode(0)
+	self.add_child(fireSoundEffect)
+	fireSoundEffect.stream = load("res://assets/SoundEffect/shoot23.mp3")
+	self.add_child(healSoundEffect)
+	healSoundEffect.stream = load("res://assets/SoundEffect/upgrade1.wav")
 
 func _physics_process(delta):
 	# Move Left or Right
@@ -84,12 +92,15 @@ func onAreaEntered(area):
 		heal(powerup.HEALTH_BOOST)
 		powerup.destroy()
 	if area.get_parent().is_in_group("SuperShot"):
+		healSoundEffect.play()
 		var powerup = area.get_parent()
 		powerUpTimeLeft = 0
 		hasPowerUp = true
 		powerup.destroy()
 
 func fire():
+	fireSoundEffect.volume_db = -5
+	fireSoundEffect.play()
 	var bullet
 	var firedBullet
 	if hasPowerUp:
@@ -120,6 +131,7 @@ func hurt(damage):
 		get_parent().gameOver()
 	
 func heal(health):
+	healSoundEffect.play()
 	hp += health
 	if hp >= maxHealth:
 		hp = maxHealth

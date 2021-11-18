@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/death6.mp3-358a0b5c21b973f9856a39246ba27260.mp3str"
+
+[deps]
+
+source_file="res://assets/SoundEffect/death6.mp3"
+dest_files=[ "res://.import/death6.mp3-358a0b5c21b973f9856a39246ba27260.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

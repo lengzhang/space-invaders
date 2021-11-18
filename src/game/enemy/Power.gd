@@ -11,6 +11,9 @@ onready var parent = get_parent()
 
 onready var fireCoolDown = FIRE_COOL_DOWN
 
+# Sound Effect
+#onready var damageSoundEffect = AudioStreamPlayer.new()
+
 var hp = MAX_HP
 
 var isInGame = false
@@ -18,6 +21,8 @@ var isInGame = false
 func _ready():
 	add_to_group("enemies")
 	isInGame = false
+#	self.add_child(damageSoundEffect)
+#	damageSoundEffect.stream = load("res://assets/SoundEffect/damage1.mp3")
 
 
 func _physics_process(delta):
@@ -39,6 +44,8 @@ func kill():
 	queue_free()
 
 func hurt(damage):
+#	damageSoundEffect.volume_db = -10
+#	damageSoundEffect.play()
 	hp -= damage
 	if hp <= 0:
 		kill()

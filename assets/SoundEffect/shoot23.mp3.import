@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/shoot23.mp3-9367ed4cb0f1be09c961086172479744.mp3str"
+
+[deps]
+
+source_file="res://assets/SoundEffect/shoot23.mp3"
+dest_files=[ "res://.import/shoot23.mp3-9367ed4cb0f1be09c961086172479744.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

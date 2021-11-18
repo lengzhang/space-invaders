@@ -17,6 +17,9 @@ onready var viewportHeight = Game.viewportSize[1]
 onready var sectionWidth = Game.sectionWidth
 onready var trimWidth = sectionWidth / 2
 
+# Sound Effects
+onready var laserSoundEffect = AudioStreamPlayer.new()
+
 var hp = MAX_HP
 
 var isInGame = false
@@ -31,6 +34,8 @@ func _ready():
 	add_to_group("enemies")
 	isInGame = false
 	controlLaser(false)
+	self.add_child(laserSoundEffect)
+	laserSoundEffect.stream = load("res://assets/SoundEffect/laser4.wav")
 	
 	# calculate target x
 	if position.x / viewportWidth <= 0.5:
@@ -80,6 +85,8 @@ func _physics_process(delta):
 			
 func controlLaser(on):
 	if on:
+		laserSoundEffect.volume_db = -20
+		laserSoundEffect.play()
 		BulletHitBox.show()
 		LaserCollision.disabled = false
 	else:

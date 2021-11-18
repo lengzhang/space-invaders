@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/upgrade1.wav-1cfaab2b9df949513ad3bb6bbb8027fd.sample"
+
+[deps]
+
+source_file="res://assets/SoundEffect/upgrade1.wav"
+dest_files=[ "res://.import/upgrade1.wav-1cfaab2b9df949513ad3bb6bbb8027fd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

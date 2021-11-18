@@ -3,6 +3,7 @@ extends KinematicBody2D
 const MOVE_SPEED = 50
 const attack = 10
 
+
 var hp = 100
 
 var isInGame = false
@@ -10,6 +11,7 @@ var isInGame = false
 func _ready():
 	add_to_group("enemies")
 	isInGame = false
+
 
 
 func _physics_process(delta):
