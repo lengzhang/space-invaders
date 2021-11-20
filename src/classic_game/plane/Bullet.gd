@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const MOVE_SPEED = 75
+const MOVE_SPEED = 500
 
 onready var animated_sprite = $AnimatedSprite
 

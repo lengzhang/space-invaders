@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const MOVE_SPEED = 100
+const MOVE_SPEED = 200
 const MOVE_SPEED_STEP = 10
 
 onready var Game = $"../../../"

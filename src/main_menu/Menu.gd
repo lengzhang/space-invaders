@@ -62,7 +62,7 @@ func setSelectedMenu(index):
 	selectedMenu = index
 	for i in selections.size():
 		
-		if counter >= 6:
+		if counter >= 7:
 			player.play()
 			
 		counter = counter + 1

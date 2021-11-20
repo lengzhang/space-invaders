@@ -11,13 +11,13 @@ font_data = ExtResource( 1 )
 size = 24
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFontData" id=5]
+[sub_resource type="DynamicFontData" id=3]
 font_path = "res://assets/font/Comfortaa-Bold.ttf"
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=4]
 size = 20
 extra_spacing_bottom = -4
-font_data = SubResource( 5 )
+font_data = SubResource( 3 )
 
 [node name="GameOver" type="MarginContainer"]
 margin_right = 480.0
@@ -97,7 +97,7 @@ margin_top = 141.0
 margin_right = 218.0
 margin_bottom = 269.0
 rect_min_size = Vector2( 0, 128 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 4 )
 text = "Press [ENTER] to Exit"
 align = 1
 valign = 2
