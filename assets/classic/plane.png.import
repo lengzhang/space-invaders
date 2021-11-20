@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/background 2.2.jpg-9c993abf70d2be7cb721303f4ef0d2a3.stex"
+path="res://.import/plane.png-5ea316c7a5840bf47d6e81c6cd0d5480.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spaceshooter_ByJanaChumi/background 2.2.jpg"
-dest_files=[ "res://.import/background 2.2.jpg-9c993abf70d2be7cb721303f4ef0d2a3.stex" ]
+source_file="res://assets/classic/plane.png"
+dest_files=[ "res://.import/plane.png-5ea316c7a5840bf47d6e81c6cd0d5480.stex" ]
 
 [params]
 

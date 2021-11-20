@@ -1,0 +1,327 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/classic/enemy_11.png" type="Texture" id=1]
+[ext_resource path="res://assets/classic/enemy_22.png" type="Texture" id=2]
+[ext_resource path="res://assets/classic/enemy_32.png" type="Texture" id=3]
+[ext_resource path="res://assets/classic/enemy_21.png" type="Texture" id=4]
+[ext_resource path="res://assets/classic/enemy_31.png" type="Texture" id=5]
+[ext_resource path="res://assets/classic/enemy_12.png" type="Texture" id=6]
+[ext_resource path="res://src/classic_game/notice/Notice.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://assets/font/Comfortaa-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=10]
+size = 24
+extra_spacing_bottom = -4
+font_data = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 20
+extra_spacing_bottom = -4
+font_data = SubResource( 5 )
+
+[sub_resource type="DynamicFontData" id=12]
+font_path = "res://assets/font/Comfortaa-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
+extra_spacing_bottom = -4
+font_data = SubResource( 12 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=6]
+size = 18
+extra_spacing_bottom = -8
+font_data = SubResource( 5 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[node name="Notice" type="MarginContainer"]
+margin_right = 480.0
+margin_bottom = 720.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 480.0
+margin_bottom = 720.0
+
+[node name="Level" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 480.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer/Level"]
+margin_left = 195.0
+margin_top = 20.0
+margin_right = 260.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 0, 24 )
+custom_fonts/font = SubResource( 10 )
+text = "Level"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/Level"]
+margin_left = 264.0
+margin_top = 25.0
+margin_right = 272.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 8, 0 )
+
+[node name="Level" type="Label" parent="VBoxContainer/Level"]
+margin_left = 276.0
+margin_top = 20.0
+margin_right = 285.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 0, 24 )
+custom_fonts/font = SubResource( 10 )
+text = "1"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 68.0
+margin_right = 480.0
+margin_bottom = 196.0
+rect_min_size = Vector2( 0, 128 )
+alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer/Score"]
+margin_top = 38.0
+margin_right = 480.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 11 )
+text = "Score"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="VBoxContainer/Score"]
+margin_top = 66.0
+margin_right = 480.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 9 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 200.0
+margin_right = 480.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 0, 400 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ScoreAdvanceTable" type="VBoxContainer" parent="VBoxContainer/CenterContainer"]
+margin_left = 109.0
+margin_top = 134.0
+margin_right = 370.0
+margin_bottom = 266.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable"]
+margin_right = 261.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+custom_fonts/font = SubResource( 9 )
+text = "SCORE ADVANCE TABLE"
+align = 1
+valign = 1
+
+[node name="Enemy1" type="HBoxContainer" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable"]
+margin_top = 28.0
+margin_right = 261.0
+margin_bottom = 60.0
+alignment = 1
+
+[node name="Control" type="CenterContainer" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy1"]
+margin_left = 52.0
+margin_right = 84.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy1/Control"]
+position = Vector2( 16, 16 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 4 )
+animation = "run"
+frame = 1
+playing = true
+
+[node name="Label1" type="Label" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy1"]
+margin_left = 88.0
+margin_right = 107.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = SubResource( 6 )
+text = " = "
+valign = 1
+
+[node name="Enemy1Score" type="Label" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy1"]
+margin_left = 111.0
+margin_right = 128.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = SubResource( 6 )
+text = "10"
+valign = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy1"]
+margin_left = 132.0
+margin_right = 209.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = SubResource( 6 )
+text = " POINTS"
+valign = 1
+
+[node name="Enemy2" type="HBoxContainer" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable"]
+margin_top = 64.0
+margin_right = 261.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="Control" type="CenterContainer" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy2"]
+margin_left = 50.0
+margin_right = 82.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy2/Control"]
+position = Vector2( 16, 16 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 7 )
+animation = "run"
+playing = true
+
+[node name="Label1" type="Label" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy2"]
+margin_left = 86.0
+margin_right = 105.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = SubResource( 6 )
+text = " = "
+valign = 1
+
+[node name="Enemy2Score" type="Label" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy2"]
+margin_left = 109.0
+margin_right = 130.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = SubResource( 6 )
+text = "20"
+valign = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy2"]
+margin_left = 134.0
+margin_right = 211.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = SubResource( 6 )
+text = " POINTS"
+valign = 1
+
+[node name="Enemy3" type="HBoxContainer" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable"]
+margin_top = 100.0
+margin_right = 261.0
+margin_bottom = 132.0
+alignment = 1
+
+[node name="Control" type="CenterContainer" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy3"]
+margin_left = 50.0
+margin_right = 82.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy3/Control"]
+position = Vector2( 16, 16 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 8 )
+animation = "run"
+frame = 1
+playing = true
+
+[node name="Label1" type="Label" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy3"]
+margin_left = 86.0
+margin_right = 105.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = SubResource( 6 )
+text = " = "
+valign = 1
+
+[node name="Enemy3Score" type="Label" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy3"]
+margin_left = 109.0
+margin_right = 130.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = SubResource( 6 )
+text = "30"
+valign = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/CenterContainer/ScoreAdvanceTable/Enemy3"]
+margin_left = 134.0
+margin_right = 211.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_fonts/font = SubResource( 6 )
+text = " POINTS"
+valign = 1
+
+[node name="StartNotice" type="Label" parent="VBoxContainer"]
+margin_top = 604.0
+margin_right = 480.0
+margin_bottom = 628.0
+rect_min_size = Vector2( 0, 24 )
+custom_fonts/font = SubResource( 9 )
+text = "Press [ENTER] to Start"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
