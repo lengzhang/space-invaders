@@ -6,6 +6,12 @@ var direction: String
 
 func _init(path = "middle"):
 	direction = path
+	
+	#sets attack damage and damage cap
+	attack = attack + (3 * GameManager.numPowerUps) #Powerups are permanent.
+	if attack > 151:
+		attack = 150
+	
 	add_to_group("player-bullets")
 
 func _physics_process(delta):

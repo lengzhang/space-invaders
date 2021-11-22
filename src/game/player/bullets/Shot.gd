@@ -3,13 +3,19 @@ extends KinematicBody2D
 const MOVE_SPEED = 300
 const MAX_HIT_COUNT = 3
 
-const attack = 5
+var attack = 5
 
 var hitCount = MAX_HIT_COUNT
 var direction: String
 
 func _init(path = "middle"):
 	direction = path
+	
+	#Sets damage stats and damage cap.
+	attack = attack + (1 * GameManager.numPowerUps) #Powerups are permanent.
+	if attack > 51:
+		attack = 50
+	
 	add_to_group("player-bullets")
 
 func _physics_process(delta):

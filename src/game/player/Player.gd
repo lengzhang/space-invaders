@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const SPEED = 250
 const FIRE_COOL_DOWN = 0.2
-const DURATION_POWERUP = 30
+const DURATION_POWERUP = 15
 
 const SHIP_TEXTURE_0 = "res://assets/spaceshooter_ByJanaChumi/items/16.png"
 const SHIP_TEXTURE_1 = "res://assets/spaceshooter_ByJanaChumi/items/17.png"
@@ -96,6 +96,11 @@ func onAreaEntered(area):
 		var powerup = area.get_parent()
 		powerUpTimeLeft = 0
 		hasPowerUp = true
+		powerup.destroy()
+	if area.get_parent().is_in_group("PowerUp"):
+		healSoundEffect.play()
+		var powerup = area.get_parent()
+		GameManager.numPowerUps = GameManager.numPowerUps + 1
 		powerup.destroy()
 
 func fire():

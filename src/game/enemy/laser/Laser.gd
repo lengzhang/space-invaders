@@ -37,6 +37,12 @@ func _ready():
 	self.add_child(laserSoundEffect)
 	laserSoundEffect.stream = load("res://assets/SoundEffect/laser4.wav")
 	
+	# caluclate baseHealth (dependent on level)
+	if GameManager.level > 5:
+		hp = hp + (10 * (GameManager.level - 5))
+	if hp > 150:
+		hp = 150
+	
 	# calculate target x
 	if position.x / viewportWidth <= 0.5:
 		# at left half

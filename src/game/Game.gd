@@ -9,8 +9,6 @@ onready var Score = $Wall/GUI/VBoxContainer/Info/Score
 onready var PausePopup = $PausePopup
 
 onready var player = $"Player"
-
-onready var level = 1
 onready var score = 0
 
 var sectionSize = 8
@@ -30,7 +28,8 @@ onready var enemies = [
 
 onready var powerups = [
 	preload("res://src/game/powerups/HPUp.tscn"),
-	preload("res://src/game/powerups/SuperShot.tscn")
+	preload("res://src/game/powerups/SuperShot.tscn"),
+	preload("res://src/game/powerups/PowerUp.tscn")
 ]
 
 var enemyCoolDown = 0
@@ -48,20 +47,26 @@ func _ready():
 	startGameSoundEffect.play()
 
 func _process(delta):
-	level = (
-		1 if waveCount < 5
-		else 2 if waveCount < 10
-		else 3 if waveCount < 20
-		else 4 if waveCount < 35
-		else 5
-	)
-	
+	if GameManager.level < 5:
+		GameManager.level = (
+			1 if waveCount < 5
+			else 2 if waveCount < 10
+			else 3 if waveCount < 20
+			else 4 if waveCount < 35
+			else 5
+		)
+	else:
+		if (waveCount > (GameManager.level+2)*(GameManager.level+3)): #Formula to determine the level
+			GameManager.level += 1
+			
 	enemyCoolDown -= delta
 	if enemyCoolDown < 0:
 		enemyCoolDown = (
-			5 if level <= 2
-			else 4 if level <= 4
-			else 3 
+			5 if GameManager.level <= 2
+			else 4 if GameManager.level <= 4
+			else 3 if GameManager.level <= 9
+			else 2 if GameManager.level <= 19
+			else 1
 		)
 		generateEnemy()
 		generatePowerups()
@@ -75,9 +80,13 @@ func generateEnemy():
 
 	var sectionIndexes = []
 	var numOfEnemies = (
-		randomNumberGenerator.randi_range(1, 2) if level <= 2
-		else randomNumberGenerator.randi_range(2, 3) if level <= 4
-		else randomNumberGenerator.randi_range(3, 4)
+		randomNumberGenerator.randi_range(1, 2) if GameManager.level <= 2
+		else randomNumberGenerator.randi_range(2, 3) if GameManager.level <= 4
+		else randomNumberGenerator.randi_range(3, 4) if GameManager.level <= 5
+		else randomNumberGenerator.randi_range(4, 5) if GameManager.level <= 6
+		else randomNumberGenerator.randi_range(5, 6) if GameManager.level <= 7
+		else randomNumberGenerator.randi_range(6, 7) if GameManager.level <= 8
+		else randomNumberGenerator.randi_range(7, 8)
 	)
 	
 	while sectionIndexes.size() < numOfEnemies:
@@ -88,8 +97,8 @@ func generateEnemy():
 	for pos in sectionIndexes:
 		
 		var index = (
-			0 if level <= 1
-			else randomNumberGenerator.randi_range(0, 1) if level <= 3
+			0 if GameManager.level <= 1
+			else randomNumberGenerator.randi_range(0, 1) if GameManager.level <= 3
 			else randomNumberGenerator.randi_range(0, 2)
 		)
 		var enemy = enemies[index].instance()
@@ -115,8 +124,8 @@ func generatePowerups():
 	
 	var sectionIndexes = []
 	var numOfPowerUps = (
-		randomNumberGenerator.randi_range(0, 1) if level <= 2
-		else randomNumberGenerator.randi_range(1, 1) if level <= 4
+		randomNumberGenerator.randi_range(0, 1) if GameManager.level <= 2
+		else randomNumberGenerator.randi_range(1, 1) if GameManager.level <= 4
 		else randomNumberGenerator.randi_range(1, 3)
 	)
 	
@@ -128,11 +137,12 @@ func generatePowerups():
 	for pos in sectionIndexes:
 		
 		var index = (
-			randomNumberGenerator.randi_range(0, 1) if level <= 1
-			else randomNumberGenerator.randi_range(0, 2) if level <= 3
-			else randomNumberGenerator.randi_range(0, 3)
+			randomNumberGenerator.randi_range(0, 2) if GameManager.level <= 1
+			else randomNumberGenerator.randi_range(0, 3) if GameManager.level <= 3
+			else randomNumberGenerator.randi_range(0, 4) if GameManager.level <= 8
+			else randomNumberGenerator.randi_range(0, 6)
 		)
-		if index <= 1:
+		if index <= 2:
 			var powerUp = powerups[index].instance()
 				
 			var xOffset = randomNumberGenerator.randf_range((
@@ -156,7 +166,8 @@ func pause():
 	PausePopup.pause()
 
 func gameOver():
-	
+	GameManager.level = 1 
+	GameManager.numPowerUps = 0
 	var config = ConfigFile.new()
 	
 	var err = config.load(scoreFilePath)
