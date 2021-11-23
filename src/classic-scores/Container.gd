@@ -7,8 +7,15 @@ onready var VScrollBar = Container.get_v_scrollbar()
 onready var Table = $Table
 onready var Row = preload("res://src/classic-scores/Row.tscn")
 
+#Sound Effects
+onready var backgroundSoundtrack = AudioStreamPlayer.new()
+
 
 func _ready():
+	
+	self.add_child(backgroundSoundtrack)
+	backgroundSoundtrack.stream = load("res://assets/Soundtracks/Roa - One Wish.mp3")
+	backgroundSoundtrack.play()
 	
 	var config = ConfigFile.new()
 	

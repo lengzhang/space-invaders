@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Roa - One Wish.mp3-10919896887e8e6b3445b21768148177.mp3str"
+
+[deps]
+
+source_file="res://assets/Soundtracks/Roa - One Wish.mp3"
+dest_files=[ "res://.import/Roa - One Wish.mp3-10919896887e8e6b3445b21768148177.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
