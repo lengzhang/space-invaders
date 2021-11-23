@@ -1,8 +1,9 @@
 extends KinematicBody2D
 
-const MOVE_SPEED = 100
+const MOVE_SPEED = 50
 const POSITION_OFFSET_X = 96
 const POSITION_OFFSET_Y = 32
+
 
 onready var Wave = $"../../"
 onready var animated_sprite = $AnimatedSprite
@@ -15,9 +16,21 @@ onready var offset_y = 0
 
 onready var type = 0
 
+# Sound Effect
+onready var Classic_invadersKilled = AudioStreamPlayer.new()
+
+
 func _ready():
 	animated_sprite.play("run")
 	Wave.add_enemy()
+	self.add_child(Classic_invadersKilled)
+	Classic_invadersKilled.stream = load("res://assets/SoundEffect/Classic_invaderkilled.wav")
+	
+	
+func hurtSound():
+	Classic_invadersKilled.volume_db = -10
+	Classic_invadersKilled.play()
+
 
 func _physics_process(delta):
 	if direction == Vector2.LEFT and offset_x <= -POSITION_OFFSET_X:
@@ -34,7 +47,10 @@ func _physics_process(delta):
 		offset_x += next[0]
 	elif direction == Vector2.DOWN:
 		offset_y += next[1]
+		
 
 func hurt():
+	hurtSound()
+	yield(get_tree().create_timer(0.5), "timeout")
 	Wave.remove_enemy(type)
 	queue_free()

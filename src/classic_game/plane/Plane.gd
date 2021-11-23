@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const MOVE_SPEED = 100
+const MOVE_SPEED = 150
 const VIEWPOINT_OFFSET_X = 16
 const VIEWPOINT_OFFSET_Y = 56
 const FIRE_COOL_DOWN = 1
@@ -16,6 +16,16 @@ onready var fireCoolDown = FIRE_COOL_DOWN / 2
 onready var justFireCoolDown = JUST_FIRE_COOL_DOWN / 2
 
 onready var ready = false
+
+# Sound Effect
+onready var Classic_Fire = AudioStreamPlayer.new()
+onready var Classic_Hurt = AudioStreamPlayer.new()
+
+func _ready():
+	self.add_child(Classic_Fire)
+	Classic_Fire.stream = load("res://assets/SoundEffect/Classic_shoot.wav")
+	self.add_child(Classic_Hurt)
+	Classic_Hurt.stream = load("res://assets/SoundEffect/Classic_death3.wav")
 
 func _physics_process(delta):
 	if !ready:
@@ -45,12 +55,22 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("fire") and fireCoolDown >= FIRE_COOL_DOWN:
 			fire()
 			fireCoolDown = 0
+			
+func ClassicFire():
+	Classic_Fire.volume_db = -10
+	Classic_Fire.play()
+
+func ClassicHurt():
+	Classic_Hurt.play()
 
 func fire():
+	ClassicFire()
 	var firedBullet = BULLET.instance()
 	firedBullet.position = Vector2(position.x, position.y - 32)
 	get_parent().call_deferred("add_child", firedBullet)
 
 func hurt():
+	ClassicHurt()
+	yield(get_tree().create_timer(1), "timeout")
 	get_parent().plane_dead()
 	queue_free()

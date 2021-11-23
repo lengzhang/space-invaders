@@ -14,10 +14,10 @@ font_data = ExtResource( 2 )
 [node name="Scores" type="Node2D"]
 
 [node name="Background" type="TextureRect" parent="."]
-margin_left = -120.0
-margin_top = -280.0
-margin_right = 600.0
-margin_bottom = 1000.0
+margin_left = -104.881
+margin_top = -272.44
+margin_right = 615.119
+margin_bottom = 1007.56
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

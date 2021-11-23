@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Classic_Level Clear.mp3-8a430489a7a9cfd3ca601da0e3e0a02b.mp3str"
+
+[deps]
+
+source_file="res://assets/SoundEffect/Classic_Level Clear.mp3"
+dest_files=[ "res://.import/Classic_Level Clear.mp3-8a430489a7a9cfd3ca601da0e3e0a02b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

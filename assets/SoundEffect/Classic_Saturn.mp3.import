@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Classic_Saturn.mp3-18a3a706694be69cff93e32aea71aab9.mp3str"
+
+[deps]
+
+source_file="res://assets/SoundEffect/Classic_Saturn.mp3"
+dest_files=[ "res://.import/Classic_Saturn.mp3-18a3a706694be69cff93e32aea71aab9.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Classic_Game Over.mp3-559d95c54b91310638dfe4a91a8afdda.mp3str"
+
+[deps]
+
+source_file="res://assets/SoundEffect/Classic_Game Over.mp3"
+dest_files=[ "res://.import/Classic_Game Over.mp3-559d95c54b91310638dfe4a91a8afdda.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
