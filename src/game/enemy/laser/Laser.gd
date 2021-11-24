@@ -39,7 +39,7 @@ func _ready():
 	
 	# caluclate baseHealth (dependent on level)
 	if GameManager.level > 5:
-		hp = hp + (10 * (GameManager.level - 5))
+		hp = hp + (18 * (GameManager.level - 5))
 	if hp > 150:
 		hp = 150
 	

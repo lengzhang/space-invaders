@@ -2,24 +2,23 @@ extends KinematicBody2D
 
 var MOVE_SPEED = 300
 var attack = 10
-var direction: String
+var direction_speed = 0;
 
-func _init(path = "middle"):
-	direction = path
+func _init(var path = 0):
+	direction_speed = path
 	
 	#sets attack damage and damage cap
 	attack = attack + (3 * GameManager.numPowerUps) #Powerups are permanent.
-	if attack > 151:
-		attack = 150
+	if attack > 151 + 5 * GameManager.level:
+		attack = 150 + 5 * GameManager.level
+	if GameManager.hasPowerUp:
+		attack = 2 * attack / 3 + 1
 	
 	add_to_group("player-bullets")
 
 func _physics_process(delta):
 	move_and_collide(Vector2.UP * delta * MOVE_SPEED)
-	if (direction == "left"):
-		move_and_collide(Vector2.LEFT * delta * MOVE_SPEED * 1/6)
-	if (direction == "right"):
-		move_and_collide(Vector2.RIGHT * delta * MOVE_SPEED * 1/6)
+	move_and_collide(Vector2.RIGHT * delta * direction_speed)
 
 func onExitedBody(body):
 	if (body.name == 'Wall'):

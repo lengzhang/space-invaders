@@ -6,24 +6,23 @@ const MAX_HIT_COUNT = 3
 var attack = 5
 
 var hitCount = MAX_HIT_COUNT
-var direction: String
+var direction_speed = 0;
 
-func _init(path = "middle"):
-	direction = path
+func _init(var path = 0):
+	direction_speed = path
 	
 	#Sets damage stats and damage cap.
 	attack = attack + (1 * GameManager.numPowerUps) #Powerups are permanent.
-	if attack > 51:
-		attack = 50
+	if attack > 51 + 2 * GameManager.level:
+		attack = 50 + 2 * GameManager.level
+	if GameManager.hasPowerUp:
+		attack = 2 * attack / 3 + 1
 	
 	add_to_group("player-bullets")
 
 func _physics_process(delta):
 	move_and_collide(Vector2.UP * delta * MOVE_SPEED)
-	if (direction == "left"):
-		move_and_collide(Vector2.LEFT * delta * MOVE_SPEED * 1/6)
-	if (direction == "right"):
-		move_and_collide(Vector2.RIGHT * delta * MOVE_SPEED * 1/6)
+	move_and_collide(Vector2.RIGHT * delta * direction_speed)
 
 func onExitedBody(body):
 	if (body.name == 'Wall'):

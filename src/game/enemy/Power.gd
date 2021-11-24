@@ -20,6 +20,7 @@ var isInGame = false
 	
 func _ready():
 	add_to_group("enemies")
+	hp = hp + (15 * (GameManager.level-3))
 	isInGame = false
 #	self.add_child(damageSoundEffect)
 #	damageSoundEffect.stream = load("res://assets/SoundEffect/damage1.mp3")

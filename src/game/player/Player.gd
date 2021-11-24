@@ -21,13 +21,11 @@ onready var hp = 100
 onready var Velocity = Vector2()
 onready var fireCoolDown = FIRE_COOL_DOWN
 onready var powerUpTimeLeft = 0
+onready var powerUpBonusTimeLeft = 0
 
 # Sound Effect
 onready var fireSoundEffect = AudioStreamPlayer.new()
 onready var healSoundEffect = AudioStreamPlayer.new()
-
-var isIn = false
-var hasPowerUp = false
 
 func _ready():
 	setShipMode(0)
@@ -77,10 +75,15 @@ func _physics_process(delta):
 		switchCoolDown = 0
 		
 	# Timer for Damage PowerUp
-	if hasPowerUp:
+	powerUpBonusTimeLeft += delta
+	if GameManager.hasPowerUp:
 		powerUpTimeLeft += delta
 		if DURATION_POWERUP <= powerUpTimeLeft:
-			hasPowerUp = false
+			GameManager.hasPowerUp = false
+	if DURATION_POWERUP - 5 <= powerUpBonusTimeLeft:
+		if GameManager.multiShotBonus > 2:
+			powerUpBonusTimeLeft = 0
+			GameManager.multiShotBonus = GameManager.multiShotBonus - 1
 
 
 func onAreaEntered(area):
@@ -94,8 +97,11 @@ func onAreaEntered(area):
 	if area.get_parent().is_in_group("SuperShot"):
 		healSoundEffect.play()
 		var powerup = area.get_parent()
+		if GameManager.multiShotBonus < 8:
+			GameManager.multiShotBonus = GameManager.multiShotBonus + 1 #spawn cap limit is 8
+		powerUpBonusTimeLeft = 0 #resets multishot bonus counter
 		powerUpTimeLeft = 0
-		hasPowerUp = true
+		GameManager.hasPowerUp = true
 		powerup.destroy()
 	if area.get_parent().is_in_group("PowerUp"):
 		healSoundEffect.play()
@@ -108,21 +114,17 @@ func fire():
 	fireSoundEffect.play()
 	var bullet
 	var firedBullet
-	if hasPowerUp:
-		bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
-		firedBullet = bullet.instance()
-		firedBullet.position = Vector2(position.x, position.y - 24)
-		get_parent().call_deferred("add_child", firedBullet)
-		bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
-		firedBullet = bullet.instance()
-		firedBullet._init("left")
-		firedBullet.position = Vector2(position.x, position.y - 24)
-		get_parent().call_deferred("add_child", firedBullet)
-		bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
-		firedBullet = bullet.instance()
-		firedBullet._init("right")
-		firedBullet.position = Vector2(position.x, position.y - 24)
-		get_parent().call_deferred("add_child", firedBullet)
+	var bulletOffset
+	var totalOffset
+	if GameManager.hasPowerUp:
+		for n in range(0,GameManager.multiShotBonus):
+			bulletOffset = (GameManager.multiShotBonus - 1) * 25
+			totalOffset = n * 50 - bulletOffset
+			bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
+			firedBullet = bullet.instance()
+			firedBullet._init(totalOffset)
+			firedBullet.position = Vector2(position.x, position.y - 24)
+			get_parent().call_deferred("add_child", firedBullet)
 	else:
 		bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
 		firedBullet = bullet.instance()

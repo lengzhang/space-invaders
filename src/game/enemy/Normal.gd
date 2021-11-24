@@ -17,6 +17,7 @@ var isInGame = false
 func _ready():
 	add_to_group("enemies")
 	isInGame = false
+	hp = hp + (15 * (GameManager.level-3))
 	moveSpeed = moveSpeed + (10 * GameManager.level)
 	attack = attack + (2 * GameManager.level)
 #	self.add_child(damageSoundEffect)

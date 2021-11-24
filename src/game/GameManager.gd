@@ -5,6 +5,8 @@ extends Node2D
 # When using these variable, make sure to reset them when the game is over.
 var level = 1
 var numPowerUps = 0
+var multiShotBonus = 2
+var hasPowerUp = false
 
 #data for laserEnemies (dont remove)
 var sectionSize = 8
