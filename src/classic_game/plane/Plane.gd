@@ -61,6 +61,7 @@ func ClassicFire():
 	Classic_Fire.play()
 
 func ClassicHurt():
+	Classic_Hurt.volume_db = -10
 	Classic_Hurt.play()
 
 func fire():
