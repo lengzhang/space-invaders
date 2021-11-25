@@ -3,6 +3,7 @@ extends Node2D
 onready var Parent = $"../"
 onready var Life = $Life
 onready var Score = $Score
+onready var Level = $Level
 
 onready var PLANE = preload("res://src/classic_game/plane/Plane.tscn")
 onready var WAVE = preload("res://src/classic_game/wave/Wave.tscn")
@@ -18,8 +19,10 @@ onready var Classic_levelClear = AudioStreamPlayer.new()
 onready var Classic_gameOver = AudioStreamPlayer.new()
 
 var plane
+var is_able_to_pause = true
 
 func _ready():
+	is_able_to_pause = true
 	update_info()
 	var wave = WAVE.instance()
 	add_child(wave)
@@ -37,6 +40,7 @@ func add_score(type):
 	update_info()
 	
 func next_level():
+	is_able_to_pause = false
 	plane.go_forward()
 	Classic_backgroundSoundtrack.stop()
 	yield(get_tree().create_timer(1), "timeout")
@@ -61,6 +65,7 @@ func new_plane():
 func update_info():
 	Life.text = String(life)
 	Score.text = String(Parent.score)
+	Level.text = String(Parent.level)
 
 func game_over():
 	Classic_backgroundSoundtrack.stop()
