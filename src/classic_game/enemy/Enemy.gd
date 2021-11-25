@@ -4,6 +4,7 @@ const MOVE_SPEED = 50
 const POSITION_OFFSET_X = 96
 const POSITION_OFFSET_Y = 32
 
+onready var Explosion = preload("res://src/classic_game/explosion/Explosion.tscn")
 
 onready var Wave = $"../../"
 onready var animated_sprite = $AnimatedSprite
@@ -17,26 +18,26 @@ onready var offset_y = 0
 onready var type = 0
 
 # Sound Effect
-onready var Classic_invadersKilled = AudioStreamPlayer.new()
+#onready var Classic_invadersKilled = AudioStreamPlayer.new()
 
 
 func _ready():
 	animated_sprite.play("run")
 	Wave.add_enemy()
-	self.add_child(Classic_invadersKilled)
-	Classic_invadersKilled.stream = load("res://assets/SoundEffect/Classic_invaderkilled.wav")
+#	self.add_child(Classic_invadersKilled)
+#	Classic_invadersKilled.stream = load("res://assets/SoundEffect/Classic_invaderkilled.wav")
 	
 	
-func hurtSound():
-	Classic_invadersKilled.volume_db = -10
-	Classic_invadersKilled.play()
+#func hurtSound():
+#	Classic_invadersKilled.volume_db = -10
+#	Classic_invadersKilled.play()
 
 
 func _physics_process(delta):
 	if direction == Vector2.LEFT and offset_x <= -POSITION_OFFSET_X:
 		direction = Vector2.RIGHT
 	elif direction == Vector2.RIGHT and offset_x >= POSITION_OFFSET_X:
-		direction = Vector2.DOWN
+		direction = Vector2.DOWN  
 		offset_y = 0
 	elif direction == Vector2.DOWN and offset_y >= POSITION_OFFSET_Y:
 		direction = Vector2.LEFT
@@ -50,7 +51,10 @@ func _physics_process(delta):
 		
 
 func hurt():
-	hurtSound()
-	yield(get_tree().create_timer(0.5), "timeout")
-	Wave.remove_enemy(type)
+#	hurtSound()
+#	yield(get_tree().create_timer(0.5), "timeout")
 	queue_free()
+	Wave.remove_enemy(type)
+	var explosion = Explosion.instance()
+	explosion.position = position
+	get_parent().add_child(explosion)

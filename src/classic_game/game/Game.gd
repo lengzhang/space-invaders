@@ -17,6 +17,7 @@ onready var Classic_backgroundSoundtrack = AudioStreamPlayer.new()
 onready var Classic_levelClear = AudioStreamPlayer.new()
 onready var Classic_gameOver = AudioStreamPlayer.new()
 
+var plane
 
 func _ready():
 	update_info()
@@ -36,6 +37,7 @@ func add_score(type):
 	update_info()
 	
 func next_level():
+	plane.go_forward()
 	Classic_backgroundSoundtrack.stop()
 	yield(get_tree().create_timer(1), "timeout")
 	Classic_levelClear.play()
@@ -52,7 +54,7 @@ func plane_dead():
 		game_over()
 
 func new_plane():
-	var plane = PLANE.instance()
+	plane = PLANE.instance()
 	plane.position = Vector2(viewport_size[0] / 2, viewport_size[1] - 16)
 	add_child(plane)
 
