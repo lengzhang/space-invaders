@@ -6,11 +6,12 @@ const MAX_HP = 100
 onready var parent = get_parent()
 
 # Sound Effect
-#onready var damageSoundEffect = AudioStreamPlayer.new()
+onready var hurtSoundEffect = AudioStreamPlayer.new()
 
 var hp = MAX_HP
 var moveSpeed = 25
 var attack = 10
+
 
 var isInGame = false
 	
@@ -20,19 +21,21 @@ func _ready():
 	hp = hp + (15 * (GameManager.level-3))
 	moveSpeed = moveSpeed + (10 * GameManager.level)
 	attack = attack + (2 * GameManager.level)
-#	self.add_child(damageSoundEffect)
-#	damageSoundEffect.stream = load("res://assets/SoundEffect/damage1.mp3")
+	self.add_child(hurtSoundEffect)
+	hurtSoundEffect.stream = load("res://assets/SoundEffect/explosion2.mp3")
 	
 
 func _physics_process(delta):
 	move_and_collide(Vector2.DOWN * delta * moveSpeed)
+	
 
 func kill():
 	queue_free()
 
+
 func hurt(damage):
-#	damageSoundEffect.volume_db = -10
-#	damageSoundEffect.play()
+	hurtSoundEffect.volume_db = -5
+	hurtSoundEffect.play()
 	hp -= damage
 
 	if hp <= 0:		

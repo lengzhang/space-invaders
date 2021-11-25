@@ -19,6 +19,7 @@ onready var trimWidth = sectionWidth / 2
 
 # Sound Effects
 onready var laserSoundEffect = AudioStreamPlayer.new()
+onready var hurtSoundEffect = AudioStreamPlayer.new()
 
 var hp = MAX_HP
 
@@ -36,6 +37,8 @@ func _ready():
 	controlLaser(false)
 	self.add_child(laserSoundEffect)
 	laserSoundEffect.stream = load("res://assets/SoundEffect/laser4.wav")
+	self.add_child(hurtSoundEffect)
+	hurtSoundEffect.stream = load("res://assets/SoundEffect/explosion2.mp3")
 	
 	# caluclate baseHealth (dependent on level)
 	if GameManager.level > 5:
@@ -104,6 +107,8 @@ func kill():
 	queue_free()
 
 func hurt(damage):
+	hurtSoundEffect.volume_db = -5
+	hurtSoundEffect.play()
 	hp -= damage
 	if hp <= 0:
 		kill()

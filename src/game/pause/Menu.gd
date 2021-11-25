@@ -10,7 +10,16 @@ onready var Restart = $Restart
 onready var Quit = $Quit
 onready var CountDown = $"../CountDown"
 
+# Sound Effect
+onready var soundEffect = AudioStreamPlayer.new()
+
+var counter = 0
+
 var selectedMenu = 0
+
+func _ready():
+	self.add_child(soundEffect)
+	soundEffect.stream = load("res://assets/SoundEffect/select7.wav")
 
 func _input(event):
 
@@ -45,6 +54,9 @@ func select():
 			get_tree().change_scene("res://src/main_menu/MainMenu.tscn")
 
 func setSelectedMenu(index):
+	if counter >= 1:
+			soundEffect.play()
+	counter+=1
 	selectedMenu = index
 	Resume.color = COLOR_SELECTED if index == 0 else COLOR_UNSELECTED
 	Restart.color = COLOR_SELECTED if index == 1 else COLOR_UNSELECTED

@@ -10,7 +10,9 @@ onready var ScoresScene = preload("res://src/scores/Scores.tscn")
 onready var ClassicScoresScene = preload("res://src/classic-scores/Scores.tscn")
 onready var Credit = preload("res://src/Credit/Credit.tscn")
 onready var HowToPlayScene = preload("res://src/how_to_play/HowToPlay.tscn")
-onready var player = AudioStreamPlayer.new()
+
+# Sound Effect
+onready var soundEffect = AudioStreamPlayer.new()
 
 onready var counter = 0
 
@@ -22,8 +24,8 @@ onready var menu_length = selections.size()
 var selectedMenu = 0
 
 func _ready():
-	self.add_child(player)
-	player.stream = load("res://assets/SoundEffect/select7.wav")
+	self.add_child(soundEffect)
+	soundEffect.stream = load("res://assets/SoundEffect/select7.wav")
 	setSelectedMenu(0)
 
 func _input(event):
@@ -63,7 +65,7 @@ func setSelectedMenu(index):
 	for i in selections.size():
 		
 		if counter >= 7:
-			player.play()
+			soundEffect.play()
 			
 		counter = counter + 1
 

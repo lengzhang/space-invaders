@@ -15,170 +15,170 @@
 [ext_resource path="res://assets/spaceshooter_ByJanaChumi/items/bullets/11.png" type="Texture" id=13]
 [ext_resource path="res://src/main_menu/ParallaxBackground3.gd" type="Script" id=14]
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 0, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 91, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 182, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 273, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 364, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 455, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 546, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 637, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 728, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 819, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 910, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1001, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1092, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1183, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1274, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=16]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1365, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1456, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1547, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1638, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=20]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1729, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=21]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1820, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=25]
+[sub_resource type="AtlasTexture" id=22]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 1911, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=26]
+[sub_resource type="AtlasTexture" id=23]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 2002, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=27]
+[sub_resource type="AtlasTexture" id=24]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 2093, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=28]
+[sub_resource type="AtlasTexture" id=25]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 2184, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=29]
+[sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 2275, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=27]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 2366, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=31]
+[sub_resource type="AtlasTexture" id=28]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 2457, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=32]
+[sub_resource type="AtlasTexture" id=29]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 2548, 109, 91 )
 
-[sub_resource type="AtlasTexture" id=33]
+[sub_resource type="AtlasTexture" id=30]
 flags = 4
 atlas = ExtResource( 11 )
 region = Rect2( 0, 2639, 109, 91 )
 
-[sub_resource type="SpriteFrames" id=34]
+[sub_resource type="SpriteFrames" id=31]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="Shader" id=35]
+[sub_resource type="Shader" id=32]
 
-[sub_resource type="ShaderMaterial" id=36]
-shader = SubResource( 35 )
+[sub_resource type="ShaderMaterial" id=33]
+shader = SubResource( 32 )
 
-[sub_resource type="Environment" id=37]
+[sub_resource type="Environment" id=34]
 background_mode = 4
 fog_color = Color( 0.929412, 0.952941, 0.972549, 1 )
 fog_sun_color = Color( 0.996078, 0.913725, 0.74902, 1 )
@@ -197,15 +197,15 @@ glow_hdr_threshold = 4.0
 glow_hdr_luminance_cap = 256.0
 glow_hdr_scale = 4.0
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=35]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=36]
 extra_spacing_bottom = -4
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=37]
 extra_spacing_bottom = -4
 font_data = ExtResource( 1 )
 
@@ -259,40 +259,40 @@ motion_mirroring = Vector2( 0, 2500 )
 [node name="asteroid1" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 105.208, -87.5814 )
 z_index = 1
-frames = SubResource( 34 )
-frame = 15
+frames = SubResource( 31 )
+frame = 7
 playing = true
 
 [node name="asteroid2" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 370.496, 129.9 )
 rotation = -1.52891
 z_index = 1
-frames = SubResource( 34 )
-frame = 15
+frames = SubResource( 31 )
+frame = 7
 playing = true
 
 [node name="asteroid3" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 113.604, 218.579 )
 rotation = 2.20784
 z_index = 1
-frames = SubResource( 34 )
-frame = 14
+frames = SubResource( 31 )
+frame = 6
 playing = true
 
 [node name="asteroid4" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 91.7786, 730.818 )
 rotation = 3.31613
 z_index = 1
-frames = SubResource( 34 )
-frame = 13
+frames = SubResource( 31 )
+frame = 5
 playing = true
 
 [node name="asteroid5" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 374.491, 838.699 )
 rotation = -1.01927
 z_index = 1
-frames = SubResource( 34 )
-frame = 12
+frames = SubResource( 31 )
+frame = 4
 playing = true
 
 [node name="asteroid6" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -300,8 +300,8 @@ position = Vector2( 114.374, 1077.82 )
 rotation = -2.20784
 scale = Vector2( 2, 1 )
 z_index = 1
-frames = SubResource( 34 )
-frame = 11
+frames = SubResource( 31 )
+frame = 3
 playing = true
 
 [node name="asteroid7" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -309,16 +309,16 @@ position = Vector2( 117.53, 1497.51 )
 rotation = 0.708604
 scale = Vector2( 1, 2 )
 z_index = 1
-frames = SubResource( 34 )
-frame = 11
+frames = SubResource( 31 )
+frame = 3
 playing = true
 
 [node name="asteroid8" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 357.986, 1199.51 )
 rotation = 2.71748
 z_index = 1
-frames = SubResource( 34 )
-frame = 10
+frames = SubResource( 31 )
+frame = 2
 playing = true
 
 [node name="ParallaxBackground3" type="ParallaxBackground" parent="."]
@@ -331,7 +331,7 @@ motion_mirroring = Vector2( 0, 2500 )
 [node name="line" type="Sprite" parent="ParallaxBackground3/ParallaxLayer"]
 modulate = Color( 100, 100, 100, 1 )
 light_mask = 524289
-material = SubResource( 36 )
+material = SubResource( 33 )
 position = Vector2( 45.0858, 134.129 )
 scale = Vector2( 0.2, 10 )
 z_index = 1
@@ -424,13 +424,13 @@ __meta__ = {
 }
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="ParallaxBackground3/ParallaxLayer"]
-environment = SubResource( 37 )
+environment = SubResource( 34 )
 
 [node name="Title" type="Label" parent="."]
 anchor_right = 1.0
 margin_top = 48.0
 margin_bottom = 85.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 35 )
 text = "Space Invaders"
 align = 1
 valign = 1
@@ -471,7 +471,7 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 36 )
 text = "New Game"
 align = 1
 valign = 1
@@ -503,7 +503,7 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 36 )
 text = "Classic Game"
 align = 1
 valign = 1
@@ -535,7 +535,7 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 36 )
 text = "Scores"
 align = 1
 valign = 1
@@ -567,7 +567,7 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 36 )
 text = "Classic Scores"
 align = 1
 valign = 1
@@ -599,7 +599,7 @@ margin_bottom = 16.0
 rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 36 )
 text = "How To Play?"
 align = 1
 valign = 1
@@ -631,7 +631,7 @@ margin_bottom = 16.0002
 rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 37 )
 text = "Credit"
 align = 1
 valign = 1
@@ -663,7 +663,7 @@ margin_bottom = 17.2599
 rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 37 )
 text = "Quit"
 align = 1
 valign = 1
