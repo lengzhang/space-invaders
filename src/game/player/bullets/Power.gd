@@ -25,6 +25,10 @@ func onExitedBody(body):
 		queue_free()
 
 func onEnteredArea(area):
+
+	if area.name == "LaserHitBox":
+		queue_free()
+		return
 	var parent = area.get_parent()
 	if parent.is_in_group("enemies"):
 		parent.hurt(attack)

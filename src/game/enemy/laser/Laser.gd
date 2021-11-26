@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://src/game/enemy/Enemy.gd"
 
 var randomNumberGenerator = RandomNumberGenerator.new()
 
@@ -6,10 +6,12 @@ const WAIT_TIME = 0.25
 const MOVE_SPEED_X = 100
 const MOVE_SPEED_Y = 200
 const MAX_HP = 50
-const attack = 10
 
-onready var BulletHitBox = $BulletHitBox
-onready var LaserCollision = $BulletHitBox/CollisionShape2D
+# Sound Effects
+onready var laserSoundEffect = AudioStreamPlayer.new()
+
+onready var LaserHitBox = $LaserHitBox
+onready var LaserCollision = $LaserHitBox/CollisionShape2D
 
 onready var Game = get_node("/root").get_child(0)
 onready var viewportWidth = Game.viewportSize[0]
@@ -17,35 +19,26 @@ onready var viewportHeight = Game.viewportSize[1]
 onready var sectionWidth = Game.sectionWidth
 onready var trimWidth = sectionWidth / 2
 
-# Sound Effects
-onready var laserSoundEffect = AudioStreamPlayer.new()
-onready var hurtSoundEffect = AudioStreamPlayer.new()
-
-var hp = MAX_HP
-
-var isInGame = false
-
 var stage = 0
 var targetPos = [0, 0]
 var isToLeft = false
 var coolDown = WAIT_TIME
-	
+
 func _ready():
+	max_hp = MAX_HP
+	hp = max_hp
+	update_hp_bar()
+
 	randomNumberGenerator.randomize()
-	add_to_group("enemies")
-	isInGame = false
 	controlLaser(false)
 	self.add_child(laserSoundEffect)
 	laserSoundEffect.stream = load("res://assets/SoundEffect/laser4.wav")
-	self.add_child(hurtSoundEffect)
-	hurtSoundEffect.stream = load("res://assets/SoundEffect/explosion2.mp3")
 	
 	# caluclate baseHealth (dependent on level)
 	if GameManager.level > 5:
-		hp = hp + (18 * (GameManager.level - 5))
+		hp = hp + (18 * (GameManager.level - 1))
 	if hp > 150:
 		hp = 150
-	
 	# calculate target x
 	if position.x / viewportWidth <= 0.5:
 		# at left half
@@ -55,11 +48,11 @@ func _ready():
 		# at right half
 		targetPos[0] = randomNumberGenerator.randf_range(trimWidth, position.x - sectionWidth)
 		isToLeft = true
+		
 	# calculate target y
 	targetPos[1] = randomNumberGenerator.randf_range(viewportHeight * 0.15, viewportHeight * 0.35)
 
-
-func _physics_process(delta):
+func on_physics_process(delta):
 	if stage == 0:
 		if position.y < targetPos[1]:
 			move_and_collide(Vector2.DOWN * delta * MOVE_SPEED_Y)
@@ -91,34 +84,13 @@ func _physics_process(delta):
 			stage += 1
 	elif stage == 4:
 		move_and_collide(Vector2.DOWN * delta * MOVE_SPEED_Y)
-			
+	
 func controlLaser(on):
 	if on:
 		laserSoundEffect.volume_db = -20
 		laserSoundEffect.play()
-		BulletHitBox.show()
+		LaserHitBox.show()
 		LaserCollision.disabled = false
 	else:
-		BulletHitBox.hide()
+		LaserHitBox.hide()
 		LaserCollision.disabled = true
-	
-
-func kill():
-	queue_free()
-
-func hurt(damage):
-	hurtSoundEffect.volume_db = -5
-	hurtSoundEffect.play()
-	hp -= damage
-	if hp <= 0:
-		kill()
-		if Game.has_method("increaseScore"):
-			Game.increaseScore(MAX_HP)
-
-func onExitedBody(body):
-	if body.name == "Wall":
-		if isInGame:
-			isInGame = false
-			kill()
-		else:
-			isInGame = true
