@@ -7,6 +7,7 @@ var randomNumberGenerator = RandomNumberGenerator.new()
 onready var HPBar = $Wall/GUI/VBoxContainer/HPBar
 onready var Score = $Wall/GUI/VBoxContainer/Info/Score
 onready var PausePopup = $PausePopup
+onready var GameCamera = $GameCamera
 
 onready var player = $"Player"
 onready var score = 0
@@ -71,7 +72,9 @@ func _process(delta):
 		generateEnemy()
 		generatePowerups()
 	
-	if player.hp != HPBar.value:
+	if !weakref(player).get_ref():
+		HPBar.setHealth(0)
+	elif player.hp != HPBar.value:
 		HPBar.setHealth(player.hp)
 		
 
@@ -191,3 +194,5 @@ func gameOver():
 	
 	get_tree().change_scene("res://src/main_menu/MainMenu.tscn")
 
+func shake():
+	GameCamera.start()

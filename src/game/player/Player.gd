@@ -10,6 +10,8 @@ const SHIP_TEXTURE_1 = "res://assets/spaceshooter_ByJanaChumi/items/17.png"
 const BULLET_POWER = "res://src/game/player/bullets/Power.tscn"
 const BULLET_SHOT = "res://src/game/player/bullets/Shot.tscn"
 
+onready var Explosion = preload("res://src/game/player/explosion/Explosion.tscn")
+
 onready var Player = $"."
 onready var Ship = $"Ship"
 
@@ -133,9 +135,13 @@ func fire():
 	
 func hurt(damage):
 	hp -= damage
+	get_parent().shake()
 	hp = max(hp, 0)
 	if hp <= 0:
-		get_parent().gameOver()
+		var explosion = Explosion.instance()
+		explosion.position = position
+		queue_free()
+		get_parent().add_child(explosion)
 	
 func heal(health):
 	healSoundEffect.play()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/game/pause/PausePopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/game/player/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/spaceshooter_ByJanaChumi/background.png" type="Texture" id=5]
 [ext_resource path="res://src/gui/GUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Soundtracks/draft-monk-ambience.mp3" type="AudioStream" id=7]
+[ext_resource path="res://src/game/GameCamera.gd" type="Script" id=8]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
@@ -41,3 +42,17 @@ margin_bottom = 342.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 autoplay = true
+
+[node name="GameCamera" type="Camera2D" parent="."]
+position = Vector2( 240.5, 360 )
+current = true
+script = ExtResource( 8 )
+
+[node name="ShakeTween" type="Tween" parent="GameCamera"]
+
+[node name="Frequency" type="Timer" parent="GameCamera"]
+
+[node name="Duration" type="Timer" parent="GameCamera"]
+
+[connection signal="timeout" from="GameCamera/Frequency" to="GameCamera" method="_on_Frequency_timeout"]
+[connection signal="timeout" from="GameCamera/Duration" to="GameCamera" method="_on_Duration_timeout"]
