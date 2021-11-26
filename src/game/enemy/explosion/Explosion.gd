@@ -17,8 +17,8 @@ func _ready():
 		animated_sprite.scale.y = 1
 	animated_sprite.play(animations[i])
 	self.add_child(hurtSoundEffect)
-	hurtSoundEffect.stream = load("res://assets/SoundEffect/explosion2.mp3")
-	hurtSoundEffect.volume_db = -10
+	hurtSoundEffect.stream = load("res://assets/SoundEffect/Blink33.wav")
+#	hurtSoundEffect.volume_db = -10
 	hurtSoundEffect.play()
 
 func _on_Explosion_animation_finished():

@@ -191,19 +191,3 @@ func gameOver():
 	
 	get_tree().change_scene("res://src/main_menu/MainMenu.tscn")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
