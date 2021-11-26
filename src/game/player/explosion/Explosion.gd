@@ -7,6 +7,7 @@ var animations = ["explosion_0", "explosion_1", "explosion_2"]
 var index = 0
 
 func _ready():
+
 	play_animation()
 
 func _on_Explosion_animation_finished():
@@ -18,4 +19,4 @@ func play_animation():
 		index += 1
 	else:
 		queue_free()
-		get_parent().game_over()
+		get_parent().gameOver()
