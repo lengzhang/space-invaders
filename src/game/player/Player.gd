@@ -28,6 +28,7 @@ onready var powerUpBonusTimeLeft = 0
 # Sound Effect
 onready var fireSoundEffect = AudioStreamPlayer.new()
 onready var healSoundEffect = AudioStreamPlayer.new()
+onready var hurtSoundEffect = AudioStreamPlayer.new()
 
 func _ready():
 	setShipMode(0)
@@ -35,6 +36,8 @@ func _ready():
 	fireSoundEffect.stream = load("res://assets/SoundEffect/shoot23.mp3")
 	self.add_child(healSoundEffect)
 	healSoundEffect.stream = load("res://assets/SoundEffect/upgrade1.wav")
+	self.add_child(hurtSoundEffect)
+	hurtSoundEffect.stream = load("res://assets/SoundEffect/Blink1.wav")
 
 func _physics_process(delta):
 	# Move Left or Right
@@ -134,6 +137,8 @@ func fire():
 		get_parent().call_deferred("add_child", firedBullet)
 	
 func hurt(damage):
+	hurtSoundEffect.volume_db = 10
+	hurtSoundEffect.play()
 	hp -= damage
 	get_parent().shake()
 	hp = max(hp, 0)
@@ -148,6 +153,7 @@ func heal(health):
 	hp += health
 	if hp >= maxHealth:
 		hp = maxHealth
+
 
 func setShipMode(mode):
 	if mode != shipMode:

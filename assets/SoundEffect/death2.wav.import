@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/explosion1.wav-85cd4d489c092cfab8ac807d811a442c.sample"
+path="res://.import/death2.wav-9c7e6237b17baab26f9e0f6a1b59a955.sample"
 
 [deps]
 
-source_file="res://assets/SoundEffect/explosion1.wav"
-dest_files=[ "res://.import/explosion1.wav-85cd4d489c092cfab8ac807d811a442c.sample" ]
+source_file="res://assets/SoundEffect/death2.wav"
+dest_files=[ "res://.import/death2.wav-9c7e6237b17baab26f9e0f6a1b59a955.sample" ]
 
 [params]
 

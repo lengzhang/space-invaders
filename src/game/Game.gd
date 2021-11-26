@@ -20,6 +20,7 @@ onready var sectionTrim = sectionWidth / 6
 #Sound Effects
 onready var coinSoundEffect = AudioStreamPlayer.new()
 onready var startGameSoundEffect = AudioStreamPlayer.new()
+onready var hurtGameSoundEffect = AudioStreamPlayer.new()
 
 onready var enemies = [
 	preload("res://src/game/enemy/Normal.tscn"),
@@ -45,6 +46,7 @@ func _ready():
 	coinSoundEffect.stream = load("res://assets/SoundEffect/coin1.wav")
 	self.add_child(startGameSoundEffect)
 	startGameSoundEffect.stream = load("res://assets/SoundEffect/startGame.wav")
+	
 	startGameSoundEffect.play()
 
 func _process(delta):
@@ -195,4 +197,5 @@ func gameOver():
 	get_tree().change_scene("res://src/main_menu/MainMenu.tscn")
 
 func shake():
+	
 	GameCamera.start()

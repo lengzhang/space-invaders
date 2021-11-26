@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Blink1.wav-4bcc3a4624c685faed26a0b2163ee07c.sample"
+
+[deps]
+
+source_file="res://assets/SoundEffect/Blink1.wav"
+dest_files=[ "res://.import/Blink1.wav-4bcc3a4624c685faed26a0b2163ee07c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

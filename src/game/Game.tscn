@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/game/pause/PausePopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/game/player/Player.tscn" type="PackedScene" id=2]
@@ -8,11 +8,23 @@
 [ext_resource path="res://src/gui/GUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Soundtracks/draft-monk-ambience.mp3" type="AudioStream" id=7]
 [ext_resource path="res://src/game/GameCamera.gd" type="Script" id=8]
+[ext_resource path="res://src/game/ParallaxBackgroundForGame.gd" type="Script" id=9]
+[ext_resource path="res://assets/wallpapers/wallpaper1.jpg" type="Texture" id=10]
+[ext_resource path="res://assets/wallpapers/wallpaper2.png" type="Texture" id=11]
+[ext_resource path="res://assets/wallpapers/wallpaper3.jpg" type="Texture" id=12]
+[ext_resource path="res://assets/wallpapers/wallpaper4.jpg" type="Texture" id=13]
+[ext_resource path="res://assets/wallpapers/wallpaper5.jpg" type="Texture" id=14]
+[ext_resource path="res://assets/wallpapers/wallpaper6.png" type="Texture" id=15]
+[ext_resource path="res://assets/wallpapers/wallpaper7.jpg" type="Texture" id=16]
+[ext_resource path="res://assets/wallpapers/wallpaper8.jpg" type="Texture" id=17]
+[ext_resource path="res://assets/wallpapers/wallpaper10.jpg" type="Texture" id=18]
+[ext_resource path="res://assets/wallpapers/wallpaper9.jpg" type="Texture" id=19]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 margin_left = -120.0
 margin_top = -280.0
 margin_right = 600.0
@@ -53,6 +65,121 @@ script = ExtResource( 8 )
 [node name="Frequency" type="Timer" parent="GameCamera"]
 
 [node name="Duration" type="Timer" parent="GameCamera"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource( 9 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 0, 720 )
+
+[node name="TextureRect1" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_left = -50.0
+margin_right = 2926.0
+margin_bottom = 3968.0
+rect_scale = Vector2( 0.2, 0.182 )
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+margin_left = -100.0
+margin_right = 1500.0
+margin_bottom = 1600.0
+rect_scale = Vector2( 0.46, 0.46 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+margin_left = -100.0
+margin_right = 3612.0
+margin_bottom = 5568.0
+rect_scale = Vector2( 0.17, 0.13 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect4" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+margin_left = -100.0
+margin_right = 3276.0
+margin_bottom = 6000.0
+rect_scale = Vector2( 0.19, 0.126 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect5" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+margin_left = -100.0
+margin_right = 3276.0
+margin_bottom = 6000.0
+rect_scale = Vector2( 0.185, 0.125 )
+texture = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect6" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+margin_left = -100.0
+margin_right = 2060.0
+margin_bottom = 3840.0
+rect_scale = Vector2( 0.3, 0.19 )
+texture = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect7" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+margin_left = -100.0
+margin_right = 3900.0
+margin_bottom = 6000.0
+rect_scale = Vector2( 0.17, 0.12 )
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect8" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+margin_left = -100.0
+margin_right = 1985.0
+margin_bottom = 3706.0
+rect_scale = Vector2( 0.32, 0.2 )
+texture = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect9" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+margin_left = -100.0
+margin_right = 2060.0
+margin_bottom = 4680.0
+rect_scale = Vector2( 0.3, 0.155 )
+texture = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect10" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
+margin_left = -100.0
+margin_right = 2060.0
+margin_bottom = 4680.0
+rect_scale = Vector2( 0.3, 0.155 )
+texture = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="timeout" from="GameCamera/Frequency" to="GameCamera" method="_on_Frequency_timeout"]
 [connection signal="timeout" from="GameCamera/Duration" to="GameCamera" method="_on_Duration_timeout"]
