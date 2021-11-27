@@ -1,5 +1,7 @@
 extends Node2D
 
+const GENERATE_BOSS_SCORE = 5000
+
 var scoreFilePath = "user://scores.cfg"
 
 var randomNumberGenerator = RandomNumberGenerator.new()
@@ -34,9 +36,18 @@ onready var powerups = [
 	preload("res://src/game/powerups/PowerUp.tscn")
 ]
 
+onready var bosses = [
+	preload("res://src/game/boss/boss1/Boss1.tscn")
+]
+onready var boss_count = 0
+
 var enemyCoolDown = 0
 var enemyCount = 0
 var waveCount = 0
+
+var is_in_boss = false
+var has_boss = false
+var boss
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,8 +72,9 @@ func _process(delta):
 	else:
 		if (waveCount > (GameManager.level+2)*(GameManager.level+3)): #Formula to determine the level
 			GameManager.level += 1
-			
+	
 	enemyCoolDown -= delta
+		
 	if enemyCoolDown < 0:
 		enemyCoolDown = (
 			5 if GameManager.level <= 2
@@ -71,14 +83,21 @@ func _process(delta):
 			else 2 if GameManager.level <= 19
 			else 1
 		)
-		generateEnemy()
+		
+		if is_in_boss:
+			if !has_boss:
+				generateBoss()
+				enemyCoolDown = 0
+		else:
+			generateEnemy()
+			
+			
 		generatePowerups()
-	
+		
 	if !weakref(player).get_ref():
 		HPBar.setHealth(0)
 	elif player.hp != HPBar.value:
 		HPBar.setHealth(player.hp)
-		
 
 func generateEnemy():
 	randomNumberGenerator.randomize()
@@ -161,11 +180,27 @@ func generatePowerups():
 
 			call_deferred("add_child", powerUp)
 
+func generateBoss():
+	has_boss = true
+	boss = bosses[0].instance()
+	add_child(boss)
+	
+func killed_boss():
+	is_in_boss = false
+	has_boss = false
+	enemyCoolDown = 0
+	
+
 func increaseScore(value):
 	coinSoundEffect.volume_db = -20
 	coinSoundEffect.play()
 	score += value
 	Score.text = String(score)
+	
+	# Generate boss every GENERATE_BOSS_SCORE
+	if !is_in_boss and score >= GENERATE_BOSS_SCORE * (boss_count + 1):
+		is_in_boss = true
+		
 	
 func pause():
 	PausePopup.pause()
@@ -195,6 +230,8 @@ func gameOver():
 	config.save(scoreFilePath)
 	
 	get_tree().change_scene("res://src/main_menu/MainMenu.tscn")
+	
+	
 
 func shake():
 	

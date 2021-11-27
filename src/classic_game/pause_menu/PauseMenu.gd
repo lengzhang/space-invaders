@@ -17,7 +17,6 @@ func _input(event):
 			pause()
 
 func pause():
-	print('pause')
 	get_tree().paused = true
 	Background.show()
 	Menu.setSelectedMenu(0)

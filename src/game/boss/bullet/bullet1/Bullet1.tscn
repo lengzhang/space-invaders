@@ -1,15 +1,19 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/spaceshooter_ByJanaChumi/items/bullets/15.png" type="Texture" id=1]
-[ext_resource path="res://src/game/enemy/bullets/Power.gd" type="Script" id=2]
+[ext_resource path="res://assets/bullets/bullets_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://src/game/boss/bullet/bullet1/Bullet1.gd" type="Script" id=2]
 
-[node name="Power" type="KinematicBody2D" groups=["enemy-bullets"]]
-collision_layer = 0
+[node name="Bullet1" type="KinematicBody2D" groups=["enemy-bullets"]]
+collision_layer = 4
 collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="." groups=["enemy-bullets"]]
 texture = ExtResource( 1 )
+hframes = 6
+vframes = 3
+frame = 15
+region_rect = Rect2( 5, 3, 306, 190 )
 
 [node name="Shape" type="CollisionPolygon2D" parent="." groups=["enemy-bullets"]]
 polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 8, 0 )
@@ -20,5 +24,4 @@ polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 8, 0 )
 rotation = 3.14159
 polygon = PoolVector2Array( 0, -8, -8, 0, 8, 0 )
 
-[connection signal="area_entered" from="HitBox" to="." method="onEnteredArea"]
-[connection signal="body_exited" from="HitBox" to="." method="onExitedBody"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/enemies/boss2frame0.png" type="Texture" id=1]
+[ext_resource path="res://assets/enemies/boss2frame2.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemies/boss2frame1.png" type="Texture" id=3]
+[ext_resource path="res://assets/enemies/boss2frame3.png" type="Texture" id=4]
+[ext_resource path="res://src/game/boss/boss1/Boss1.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.490196, 0.490196, 0.490196, 1 )
+
+[node name="Boss1" type="KinematicBody2D" groups=["enemies"]]
+z_index = 10
+collision_layer = 8
+collision_mask = 0
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["enemies"]]
+scale = Vector2( 0.733, 0.755 )
+frames = SubResource( 1 )
+frame = 3
+playing = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=["enemies"]]
+scale = Vector2( 0.732758, 0.744186 )
+polygon = PoolVector2Array( -262, 75.25, -251.081, 75.25, -185.569, 53.75, -141.895, 43, -87.3016, 32.25, -43.627, 32.25, -43.627, 21.5, -32.7083, 21.5, -32.7083, 32.25, -21.7897, 75.25, -21.7897, 86, -10.871, 86, -10.871, 64.5, 10.9663, 64.5, 10.9663, 86, 21.8849, 86, 21.8849, 75.25, 32.8036, 32.25, 32.8036, 21.5, 43.7222, 21.5, 43.7222, 32.25, 87.3969, 32.25, 141.99, 43, 185.665, 53.75, 251.177, 75.25, 262.095, 75.25, 262.095, 64.5, 152.909, -53.75, -152.813, -53.75, -262, 64.5 )
+
+[node name="HitBox" type="Area2D" parent="." groups=["enemies"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox" groups=["enemies"]]
+scale = Vector2( 0.732758, 0.744186 )
+polygon = PoolVector2Array( -262, 75.25, -251.081, 75.25, -185.569, 53.75, -141.895, 43, -87.3016, 32.25, -43.627, 32.25, -43.627, 21.5, -32.7083, 21.5, -32.7083, 32.25, -21.7897, 75.25, -21.7897, 86, -10.871, 86, -10.871, 64.5, 10.9663, 64.5, 10.9663, 86, 21.8849, 86, 21.8849, 75.25, 32.8036, 32.25, 32.8036, 21.5, 43.7222, 21.5, 43.7222, 32.25, 87.3969, 32.25, 141.99, 43, 185.665, 53.75, 251.177, 75.25, 262.095, 75.25, 262.095, 64.5, 152.909, -53.75, -152.813, -53.75, -262, 64.5 )
+
+[node name="HPBar" type="ProgressBar" parent="."]
+margin_left = -191.983
+margin_top = -76.0
+margin_right = 192.017
+margin_bottom = -68.0
+rect_min_size = Vector2( 48, 8 )
+size_flags_horizontal = 3
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
