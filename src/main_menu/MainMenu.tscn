@@ -1,8 +1,8 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/main_menu/Menu.gd" type="Script" id=2]
-[ext_resource path="res://assets/spaceshooter_ByJanaChumi/background.png" type="Texture" id=3]
+[ext_resource path="res://assets/wallpapers/wallpaper1.jpg" type="Texture" id=3]
 [ext_resource path="res://assets/Soundtracks/In Dreams.mp3" type="AudioStream" id=4]
 [ext_resource path="res://assets/planets/mercury.png" type="Texture" id=5]
 [ext_resource path="res://assets/planets/earth.png" type="Texture" id=6]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/main_menu/ParallaxBackground2.gd" type="Script" id=12]
 [ext_resource path="res://assets/spaceshooter_ByJanaChumi/items/bullets/11.png" type="Texture" id=13]
 [ext_resource path="res://src/main_menu/ParallaxBackground3.gd" type="Script" id=14]
+[ext_resource path="res://src/main_menu/ParallaxBackground4.gd" type="Script" id=15]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -222,7 +223,7 @@ motion_mirroring = Vector2( 0, 2500 )
 position = Vector2( 105.208, -87.5814 )
 z_index = 1
 frames = SubResource( 31 )
-frame = 15
+frame = 7
 playing = true
 
 [node name="asteroid2" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -230,7 +231,7 @@ position = Vector2( 370.496, 129.9 )
 rotation = -1.52891
 z_index = 1
 frames = SubResource( 31 )
-frame = 15
+frame = 7
 playing = true
 
 [node name="asteroid3" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -238,7 +239,7 @@ position = Vector2( 113.604, 218.579 )
 rotation = 2.20784
 z_index = 1
 frames = SubResource( 31 )
-frame = 14
+frame = 6
 playing = true
 
 [node name="asteroid4" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -246,7 +247,7 @@ position = Vector2( 91.7786, 730.818 )
 rotation = 3.31613
 z_index = 1
 frames = SubResource( 31 )
-frame = 13
+frame = 5
 playing = true
 
 [node name="asteroid5" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -254,7 +255,7 @@ position = Vector2( 374.491, 838.699 )
 rotation = -1.01927
 z_index = 1
 frames = SubResource( 31 )
-frame = 12
+frame = 4
 playing = true
 
 [node name="asteroid6" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -263,7 +264,7 @@ rotation = -2.20784
 scale = Vector2( 2, 1 )
 z_index = 1
 frames = SubResource( 31 )
-frame = 11
+frame = 3
 playing = true
 
 [node name="asteroid7" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -272,7 +273,7 @@ rotation = 0.708604
 scale = Vector2( 1, 2 )
 z_index = 1
 frames = SubResource( 31 )
-frame = 11
+frame = 3
 playing = true
 
 [node name="asteroid8" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -280,7 +281,7 @@ position = Vector2( 357.986, 1199.51 )
 rotation = 2.71748
 z_index = 1
 frames = SubResource( 31 )
-frame = 10
+frame = 2
 playing = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -412,15 +413,21 @@ texture = ExtResource( 13 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="ParallaxBackground3/ParallaxLayer"]
 environment = SubResource( 34 )
 
-[node name="Background" type="TextureRect" parent="ParallaxBackground3/ParallaxLayer"]
+[node name="ParallaxBackground4" type="ParallaxBackground" parent="."]
+script = ExtResource( 15 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground4"]
+motion_mirroring = Vector2( 0, 2500 )
+
+[node name="Background" type="TextureRect" parent="ParallaxBackground4/ParallaxLayer"]
 anchor_top = 0.585
 anchor_right = 0.478
 anchor_bottom = 0.585
-margin_left = -126.405
-margin_top = -353.517
-margin_right = 611.596
-margin_bottom = 926.483
-rect_scale = Vector2( 1, 2 )
+margin_left = -408.627
+margin_top = -338.398
+margin_right = 2567.37
+margin_bottom = 3629.6
+rect_scale = Vector2( 0.5, 0.65 )
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

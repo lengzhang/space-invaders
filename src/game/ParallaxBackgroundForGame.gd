@@ -11,7 +11,7 @@ onready var texture6 = $"ParallaxLayer/TextureRect6"
 onready var texture7 = $"ParallaxLayer/TextureRect7"
 onready var texture8 = $"ParallaxLayer/TextureRect8"
 onready var texture9 = $"ParallaxLayer/TextureRect9"
-onready var texture10 = $"ParallaxLayer/TextureRect10"
+
 
 func _process(delta):
 	scroll_base_offset.y += scrolling_speed * delta
@@ -39,7 +39,4 @@ func _process(delta):
 	elif(GameManager.level == 9):
 		texture9.visible = true
 		texture8.visible = false
-	elif(GameManager.level == 10):
-		texture10.visible = true
-		texture9.visible = false
 	
