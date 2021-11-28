@@ -23,6 +23,8 @@ onready var sectionTrim = sectionWidth / 6
 onready var coinSoundEffect = AudioStreamPlayer.new()
 onready var startGameSoundEffect = AudioStreamPlayer.new()
 onready var hurtGameSoundEffect = AudioStreamPlayer.new()
+onready var bossGameSoundEffect = AudioStreamPlayer.new()
+onready var bossBackgroundMusic = AudioStreamPlayer.new()
 
 onready var enemies = [
 	preload("res://src/game/enemy/Normal.tscn"),
@@ -57,6 +59,10 @@ func _ready():
 	coinSoundEffect.stream = load("res://assets/SoundEffect/coin1.wav")
 	self.add_child(startGameSoundEffect)
 	startGameSoundEffect.stream = load("res://assets/SoundEffect/startGame.wav")
+	self.add_child(bossGameSoundEffect)
+	bossGameSoundEffect.stream = load("res://assets/SoundEffect/warning.wav")
+	self.add_child(bossBackgroundMusic)
+	bossBackgroundMusic.stream = load("res://assets/Soundtracks/dova_The Evil Sacrifice Archenemies_master.mp3")
 	
 	startGameSoundEffect.play()
 
@@ -181,12 +187,19 @@ func generatePowerups():
 			call_deferred("add_child", powerUp)
 
 func generateBoss():
+	bossGameSoundEffect.volume_db = -5
+	bossBackgroundMusic.volume_db = -5
+	bossGameSoundEffect.play()
+	bossBackgroundMusic.play()
+	startGameSoundEffect.stop()
 	has_boss = true
 	boss = bosses[0].instance()
 	add_child(boss)
 	boss_count += 1
 	
 func killed_boss():
+	startGameSoundEffect.play()
+	bossBackgroundMusic.stop()
 	is_in_boss = false
 	has_boss = false
 	enemyCoolDown = 0
