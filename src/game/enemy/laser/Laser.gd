@@ -25,7 +25,11 @@ var isToLeft = false
 var coolDown = WAIT_TIME
 
 func _ready():
-	max_hp = MAX_HP
+	# caluclate baseHealth (dependent on level)
+	if GameManager.level > 5:
+		max_hp = MAX_HP + (18 * (GameManager.level - 1))
+	if hp > 150:
+		max_hp = 150
 	hp = max_hp
 	update_hp_bar()
 
@@ -34,11 +38,6 @@ func _ready():
 	self.add_child(laserSoundEffect)
 	laserSoundEffect.stream = load("res://assets/SoundEffect/laser4.wav")
 	
-	# caluclate baseHealth (dependent on level)
-	if GameManager.level > 5:
-		hp = hp + (18 * (GameManager.level - 1))
-	if hp > 150:
-		hp = 150
 	# calculate target x
 	if position.x / viewportWidth <= 0.5:
 		# at left half

@@ -11,8 +11,8 @@ onready var Bullet = preload("res://src/game/enemy/bullets/Power.tscn")
 onready var fireCoolDown = FIRE_COOL_DOWN
 
 func _ready():
-	max_hp = MAX_HP
-	hp = max_hp + (15 * (GameManager.level - 1))
+	max_hp = MAX_HP + (15 * (GameManager.level-1))
+	hp = max_hp
 	moveSpeed = moveSpeed + (10 * GameManager.level)
 	attack = attack + (2 * GameManager.level)
 	update_hp_bar()

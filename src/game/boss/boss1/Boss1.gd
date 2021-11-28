@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const MOVE_SPEED = 50
 const OFFSET_Y = 75
-const MAX_HP = 5000
+const MAX_HP = 1500
 const FIRE_WIN_COUNT = 8
 
 const WAVES = [
@@ -77,7 +77,7 @@ onready var HitBox = $HitBox
 onready var HPBar = $HPBar
 
 onready var default_sacle = BossSprite.scale
-onready var max_hp = MAX_HP + (15 * (GameManager.level-1))
+onready var max_hp = MAX_HP * GameManager.level
 onready var hp = max_hp
 onready var attack = 1000 + (50 * GameManager.level)
 
