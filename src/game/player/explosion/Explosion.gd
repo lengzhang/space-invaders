@@ -12,6 +12,7 @@ var index = 0
 func _ready():
 	self.add_child(deathSoundEffect)
 	deathSoundEffect.stream = load("res://assets/SoundEffect/death2.wav")
+	deathSoundEffect.volume_db = -20
 	play_animation()
 
 func _on_Explosion_animation_finished():
