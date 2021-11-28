@@ -986,7 +986,7 @@ animations = [ {
 [node name="BossExplosion" type="AnimatedSprite"]
 frames = SubResource( 190 )
 animation = "explosion_2"
-frame = 63
+frame = 42
 playing = true
 script = ExtResource( 4 )
 

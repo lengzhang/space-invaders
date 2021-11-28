@@ -7,6 +7,8 @@ const FIRE_WIN_COUNT = 8
 
 const WAVES = [
 	[0.5, [
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1, -1, -1, -1],
 		[-1, -1, -1, 0, 0, -1, -1, -1],
 		[-1, -1, 0, -1, -1, 0, -1, -1],
 		[-1, 0, -1, -1, -1, -1, 0, -1],
@@ -27,8 +29,30 @@ const WAVES = [
 		[-1, -1, 0, 0, 0, 0, -1, -1],
 		[-1, -1, 0, 0, 0, 0, -1, -1],
 		[-1, -1, 0, 0, 0, 0, -1, -1],
+	]],
+	[0.5, [
 		[-1, -1, -1, -1, -1, -1, -1, -1],
 		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[-1, -1, -1, 1, 1, -1, -1, -1],
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[-1, -1, 1, -1, -1, 1, -1, -1],
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[-1, 1, -1, -1, -1, -1, 1, -1],
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[1, -1, -1, -1, -1, -1, -1, 1],
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[1, 1, 1, 1, 1, -1, -1, -1],
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[-1, -1, -1, 1, 1, 1, 1, 1],
+	]],
+	[0.5, [
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[0, 0, 0, 0, 0, 0, 0, 0],
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[0, 0, 0, 0, 1, 1, 1, 1],
+		[-1, -1, -1, -1, -1, -1, -1, -1],
+		[1, 1, 1, 1, 0, 0, 0, 0],
 	]]
 ]
 
@@ -37,7 +61,10 @@ onready var Explosion = preload("res://src/game/boss/explosion/Explosion.tscn")
 onready var Warning = preload("res://src/game/Warning.tscn")
 onready var warning = Warning.instance()
 
-onready var bullets = [preload("res://src/game/boss/bullet/bullet1/Bullet1.tscn")]
+onready var bullets = [
+	preload("res://src/game/boss/bullet/bullet1/Bullet1.tscn"),
+	preload("res://src/game/boss/bullet/bullet2/Bullet2.tscn")
+]
 
 onready var viewport_size = get_viewport_rect().size
 
@@ -52,6 +79,7 @@ onready var HPBar = $HPBar
 onready var default_sacle = BossSprite.scale
 onready var max_hp = MAX_HP + (15 * (GameManager.level-1))
 onready var hp = max_hp
+onready var attack = 1000 + (50 * GameManager.level)
 
 var stage = 0
 var waves_index = 0
@@ -81,7 +109,7 @@ func _ready():
 	hurtSoundEffect.stream = load("res://assets/SoundEffect/explosion2.mp3")
 	
 func _physics_process(delta):
-	if stage == 0:
+	if weakref(warning).get_ref():
 		var changed = false
 		if position.y < OFFSET_Y:
 			var next = Vector2.DOWN * delta * MOVE_SPEED
@@ -98,26 +126,38 @@ func _physics_process(delta):
 			warning.queue_free()
 			HitBox.show()
 			HPBar.show()
-			stage += 1
+			stage = 0
 			waves_index = 0
 			fire_cooldown = 0
-	elif stage == 1:
+	else:
 		fire_cooldown += delta
-		if fire_cooldown >= WAVES[stage - 1][0]:
-			var waves = WAVES[stage - 1][1]
-			var wave = waves[waves_index]
-			fire_cooldown = 0
-			for i in range(0, fire_positions.size()):
-				var bullet_index = wave[i]
-				if bullet_index < 0: continue
-				var bullet = bullets[bullet_index].instance()
-				bullet.position.x = fire_positions[i][0]
-				bullet.position.y = fire_positions[i][1]
-				Parent.add_child(bullet)
-			waves_index += 1
-			if waves_index >= waves.size():
-				waves_index = 0
+		process_fire()
+
+func process_fire():
+	var damage_percent = (max_hp - hp) / float(max_hp)
+	var new_stage = (
+		0 if damage_percent < 0.25
+		else 1 if damage_percent < 0.8
+		else 2
+	)
+	if stage != new_stage:
+		stage = new_stage
+		waves_index = 0
 		
+	if fire_cooldown >= WAVES[stage][0]:
+		var waves = WAVES[stage][1]
+		var wave = waves[waves_index]
+		fire_cooldown = 0
+		for i in range(0, fire_positions.size()):
+			var bullet_index = wave[i]
+			if bullet_index < 0: continue
+			var bullet = bullets[bullet_index].instance()
+			bullet.position.x = fire_positions[i][0]
+			bullet.position.y = fire_positions[i][1]
+			Parent.add_child(bullet)
+		waves_index += 1
+		if waves_index >= waves.size():
+			waves_index = 0
 
 func kill():
 	var explosion = Explosion.instance()

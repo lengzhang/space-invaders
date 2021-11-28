@@ -184,6 +184,7 @@ func generateBoss():
 	has_boss = true
 	boss = bosses[0].instance()
 	add_child(boss)
+	boss_count += 1
 	
 func killed_boss():
 	is_in_boss = false
