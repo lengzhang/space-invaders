@@ -29,7 +29,8 @@ onready var bossBackgroundMusic = AudioStreamPlayer.new()
 onready var enemies = [
 	preload("res://src/game/enemy/Normal.tscn"),
 	preload("res://src/game/enemy/Power.tscn"),
-	preload("res://src/game/enemy/laser/Laser.tscn")
+	preload("res://src/game/enemy/laser/Laser.tscn"),
+	preload("res://src/game/enemy/Asteroid.tscn")
 ]
 
 onready var powerups = [
@@ -135,7 +136,8 @@ func generateEnemy():
 		var index = (
 			0 if GameManager.level <= 1
 			else randomNumberGenerator.randi_range(0, 1) if GameManager.level <= 3
-			else randomNumberGenerator.randi_range(0, 2)
+			else randomNumberGenerator.randi_range(0, 2) if GameManager.level <= 9
+			else randomNumberGenerator.randi_range(0, 3)
 		)
 		var enemy = enemies[index].instance()
 			
@@ -160,7 +162,8 @@ func generatePowerups():
 	
 	var sectionIndexes = []
 	var numOfPowerUps = (
-		randomNumberGenerator.randi_range(0, 1) if GameManager.level <= 2
+		randomNumberGenerator.randi_range(1, 1) if GameManager.level <= 1
+		else randomNumberGenerator.randi_range(0, 1) if GameManager.level <= 2
 		else randomNumberGenerator.randi_range(1, 1) if GameManager.level <= 4
 		else randomNumberGenerator.randi_range(1, 3)
 	)
@@ -173,7 +176,8 @@ func generatePowerups():
 	for pos in sectionIndexes:
 		
 		var index = (
-			randomNumberGenerator.randi_range(0, 2) if GameManager.level <= 1
+			randomNumberGenerator.randi_range(2, 2) if GameManager.level <= 1
+			else randomNumberGenerator.randi_range(0, 2) if GameManager.level <= 2
 			else randomNumberGenerator.randi_range(0, 3) if GameManager.level <= 3
 			else randomNumberGenerator.randi_range(0, 4) if GameManager.level <= 8
 			else randomNumberGenerator.randi_range(0, 6)
@@ -221,6 +225,8 @@ func increaseScore(value):
 #	if !is_in_boss and score >= GENERATE_BOSS_SCORE * (boss_count + 1):
 #		is_in_boss = true
 		
+func hurtPlayer():
+	player.hurt(GameManager.level)
 	
 func pause():
 	PausePopup.pause()
@@ -228,6 +234,7 @@ func pause():
 func gameOver():
 	GameManager.level = 1 
 	GameManager.numPowerUps = 0
+	GameManager.multiShotBonus = 2
 	var config = ConfigFile.new()
 	
 	var err = config.load(scoreFilePath)

@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 onready var Explosion = preload("res://src/game/enemy/explosion/Explosion.tscn")
 
+onready var player = $"Player"
 onready var Parent = get_parent()
 onready var HPBar: ProgressBar = $HPBar
 
@@ -49,6 +50,8 @@ func hurt(damage):
 func onExitedBody(body):
 	if body.name == "Wall":
 		if isInGame:
+			if Parent.has_method("hurtPlayer"):
+				Parent.hurtPlayer()
 			isInGame = false
 			queue_free()
 		else:

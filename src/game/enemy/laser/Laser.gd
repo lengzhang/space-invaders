@@ -93,3 +93,4 @@ func controlLaser(on):
 	else:
 		LaserHitBox.hide()
 		LaserCollision.disabled = true
+		

@@ -32,6 +32,8 @@ func onEnteredArea(area):
 	var parent = area.get_parent()
 	if parent.is_in_group("enemies"):
 		parent.hurt(attack)
+		if area.name == "AsteroidHitBox":
+			hitCount -= 3
 		hitCount -= 1
 	elif parent.is_in_group("enemy-bullets"):
 		parent.hurt()

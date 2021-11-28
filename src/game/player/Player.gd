@@ -8,7 +8,9 @@ const SHIP_TEXTURE_0 = "res://assets/spaceshooter_ByJanaChumi/items/16.png"
 const SHIP_TEXTURE_1 = "res://assets/spaceshooter_ByJanaChumi/items/17.png"
 
 const BULLET_POWER = "res://src/game/player/bullets/Power.tscn"
+const BULLET_SUPERPOWER = "res://src/game/player/bullets/SuperPower.tscn"
 const BULLET_SHOT = "res://src/game/player/bullets/Shot.tscn"
+const BULLET_SUPERSHOT = "res://src/game/player/bullets/SuperShot.tscn"
 
 onready var Explosion = preload("res://src/game/player/explosion/Explosion.tscn")
 
@@ -122,14 +124,63 @@ func fire():
 	var bulletOffset
 	var totalOffset
 	if GameManager.hasPowerUp:
-		for n in range(0,GameManager.multiShotBonus):
-			bulletOffset = (GameManager.multiShotBonus - 1) * 25
-			totalOffset = n * 50 - bulletOffset
-			bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
-			firedBullet = bullet.instance()
-			firedBullet._init(totalOffset)
-			firedBullet.position = Vector2(position.x, position.y - 24)
-			get_parent().call_deferred("add_child", firedBullet)
+		if GameManager.multiShotBonus <= 4:
+			for n in range(0,GameManager.multiShotBonus):
+				bulletOffset = (GameManager.multiShotBonus - 1) * 25
+				totalOffset = n * 50 - bulletOffset
+				bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
+				firedBullet = bullet.instance()
+				firedBullet._init(totalOffset)
+				firedBullet.position = Vector2(position.x, position.y - 24)
+				get_parent().call_deferred("add_child", firedBullet)
+		elif GameManager.multiShotBonus <= 5:
+			for n in range(0,GameManager.multiShotBonus):
+				bulletOffset = (GameManager.multiShotBonus - 1) * 25
+				totalOffset = n * 50 - bulletOffset
+				if n == 2:
+					bullet = preload(BULLET_SUPERPOWER) if shipMode == 0 else preload(BULLET_SUPERSHOT)
+				else:
+					bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
+				firedBullet = bullet.instance()
+				firedBullet._init(totalOffset)
+				firedBullet.position = Vector2(position.x, position.y - 24)
+				get_parent().call_deferred("add_child", firedBullet)
+		elif GameManager.multiShotBonus <= 6:
+			for n in range(0,GameManager.multiShotBonus):
+				bulletOffset = (GameManager.multiShotBonus - 1) * 25
+				totalOffset = n * 50 - bulletOffset
+				if n == 1 || n == 4:
+					bullet = preload(BULLET_SUPERPOWER) if shipMode == 0 else preload(BULLET_SUPERSHOT)
+				else:
+					bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
+				firedBullet = bullet.instance()
+				firedBullet._init(totalOffset)
+				firedBullet.position = Vector2(position.x, position.y - 24)
+				get_parent().call_deferred("add_child", firedBullet)
+		elif GameManager.multiShotBonus <= 7:
+			for n in range(0,GameManager.multiShotBonus):
+				bulletOffset = (GameManager.multiShotBonus - 1) * 25
+				totalOffset = n * 50 - bulletOffset
+				if n == 1 || n == 3 || n == 5:
+					bullet = preload(BULLET_SUPERPOWER) if shipMode == 0 else preload(BULLET_SUPERSHOT)
+				else:
+					bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
+				firedBullet = bullet.instance()
+				firedBullet._init(totalOffset)
+				firedBullet.position = Vector2(position.x, position.y - 24)
+				get_parent().call_deferred("add_child", firedBullet)
+		else:
+			for n in range(0,GameManager.multiShotBonus):
+				bulletOffset = (GameManager.multiShotBonus - 1) * 25
+				totalOffset = n * 50 - bulletOffset
+				if n == 2 || n == 3 || n == 4 || n == 5:
+					bullet = preload(BULLET_SUPERPOWER) if shipMode == 0 else preload(BULLET_SUPERSHOT)
+				else:
+					bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
+				firedBullet = bullet.instance()
+				firedBullet._init(totalOffset)
+				firedBullet.position = Vector2(position.x, position.y - 24)
+				get_parent().call_deferred("add_child", firedBullet)
 	else:
 		bullet = preload(BULLET_POWER) if shipMode == 0 else preload(BULLET_SHOT)
 		firedBullet = bullet.instance()
@@ -145,7 +196,7 @@ func hurt(damage):
 	if hp <= 0:
 		var explosion = Explosion.instance()
 		explosion.position = position
-		queue_free()
+		hide()
 		get_parent().add_child(explosion)
 	
 func heal(health):

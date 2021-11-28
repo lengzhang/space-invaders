@@ -1,0 +1,84 @@
+[gd_scene load_steps=35 format=2]
+
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/19.png" type="Texture" id=1]
+[ext_resource path="res://src/game/enemy/Asteroid.gd" type="Script" id=2]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/11.png" type="Texture" id=3]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/16.png" type="Texture" id=4]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/26.png" type="Texture" id=5]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/7.png" type="Texture" id=6]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/0.png" type="Texture" id=7]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/18.png" type="Texture" id=8]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/24.png" type="Texture" id=9]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/9.png" type="Texture" id=10]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/14.png" type="Texture" id=11]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/27.png" type="Texture" id=12]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/2.png" type="Texture" id=13]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/1.png" type="Texture" id=14]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/15.png" type="Texture" id=15]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/12.png" type="Texture" id=16]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/28.png" type="Texture" id=17]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/17.png" type="Texture" id=18]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/6.png" type="Texture" id=19]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/5.png" type="Texture" id=20]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/10.png" type="Texture" id=21]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/3.png" type="Texture" id=22]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/20.png" type="Texture" id=23]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/4.png" type="Texture" id=24]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/8.png" type="Texture" id=25]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/21.png" type="Texture" id=26]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/29.png" type="Texture" id=27]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/23.png" type="Texture" id=28]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/25.png" type="Texture" id=29]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/13.png" type="Texture" id=30]
+[ext_resource path="res://assets/Asteroid/AsteroidAnimation/22.png" type="Texture" id=31]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 6 ), ExtResource( 25 ), ExtResource( 10 ), ExtResource( 21 ), ExtResource( 3 ), ExtResource( 16 ), ExtResource( 30 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 4 ), ExtResource( 18 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 31 ), ExtResource( 28 ), ExtResource( 9 ), ExtResource( 29 ), ExtResource( 5 ), ExtResource( 12 ), ExtResource( 17 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "display",
+"speed": 25.0
+} ]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.352941, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.490196, 0.490196, 0.490196, 1 )
+
+[node name="Asteroid" type="KinematicBody2D" groups=["enemies"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "display"
+frame = 7
+playing = true
+
+[node name="Shape" type="CollisionPolygon2D" parent="." groups=["enemies"]]
+position = Vector2( 1, 1 )
+polygon = PoolVector2Array( -39, 1, -36, -24, -18, -30, 20, -37, 33, -33, 45, -20, 39, 7, 14, 22, -11, 25, -33, 19 )
+
+[node name="AsteroidHitBox" type="Area2D" parent="." groups=["enemies"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AsteroidHitBox" groups=["enemies"]]
+polygon = PoolVector2Array( -5, -21, 33, -23, 45, -14, 34, -3, -17, 0, -37, -6 )
+
+[node name="HPBar" type="ProgressBar" parent="."]
+margin_left = -24.0
+margin_top = -28.0
+margin_right = 24.0
+margin_bottom = -24.0
+rect_min_size = Vector2( 48, 4 )
+size_flags_horizontal = 3
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="body_exited" from="AsteroidHitBox" to="." method="onExitedBody"]
