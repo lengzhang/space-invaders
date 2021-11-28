@@ -15,7 +15,7 @@ func _ready():
 	play_animation()
 
 func play_animation():
-	deathSoundEffect.volume_db = -10
+	deathSoundEffect.volume_db = -20
 	deathSoundEffect.play()
 	if index < animations.size():
 		animated_sprite.play(animations[index])
