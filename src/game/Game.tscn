@@ -69,13 +69,14 @@ script = ExtResource( 8 )
 script = ExtResource( 9 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 0, 720 )
+motion_mirroring = Vector2( 0, 1440 )
 
 [node name="TextureRect1" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
 margin_left = -50.0
 margin_right = 2926.0
 margin_bottom = 3968.0
-rect_scale = Vector2( 0.2, 0.182 )
+rect_scale = Vector2( 0.3, 0.37 )
 texture = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -86,7 +87,7 @@ visible = false
 margin_left = -100.0
 margin_right = 1500.0
 margin_bottom = 1600.0
-rect_scale = Vector2( 0.46, 0.46 )
+rect_scale = Vector2( 0.6, 0.9 )
 texture = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -97,7 +98,7 @@ visible = false
 margin_left = -100.0
 margin_right = 3276.0
 margin_bottom = 6000.0
-rect_scale = Vector2( 0.19, 0.126 )
+rect_scale = Vector2( 0.3, 0.25 )
 texture = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -105,10 +106,10 @@ __meta__ = {
 
 [node name="TextureRect4" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 visible = false
-margin_left = -100.0
-margin_right = 3276.0
+margin_left = -102.997
+margin_right = 3273.0
 margin_bottom = 6000.0
-rect_scale = Vector2( 0.185, 0.125 )
+rect_scale = Vector2( 0.4, 0.25 )
 texture = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -116,10 +117,11 @@ __meta__ = {
 
 [node name="TextureRect5" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 visible = false
-margin_left = -100.0
-margin_right = 2060.0
-margin_bottom = 3840.0
-rect_scale = Vector2( 0.3, 0.19 )
+margin_left = -140.26
+margin_top = -8.47571
+margin_right = 2019.74
+margin_bottom = 3831.52
+rect_scale = Vector2( 0.4, 0.38 )
 texture = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -127,10 +129,11 @@ __meta__ = {
 
 [node name="TextureRect6" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 visible = false
-margin_left = -100.0
-margin_right = 3900.0
-margin_bottom = 6000.0
-rect_scale = Vector2( 0.17, 0.12 )
+margin_left = -286.026
+margin_top = -10.1251
+margin_right = 3713.97
+margin_bottom = 5989.88
+rect_scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -138,10 +141,10 @@ __meta__ = {
 
 [node name="TextureRect7" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 visible = false
-margin_left = -100.0
-margin_right = 1985.0
+margin_left = -160.544
+margin_right = 1924.46
 margin_bottom = 3706.0
-rect_scale = Vector2( 0.32, 0.2 )
+rect_scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -152,18 +155,18 @@ visible = false
 margin_left = -100.0
 margin_right = 2060.0
 margin_bottom = 4680.0
-rect_scale = Vector2( 0.3, 0.155 )
+rect_scale = Vector2( 0.31, 0.31 )
 texture = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect9" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
-visible = false
-margin_left = -100.0
-margin_right = 2060.0
-margin_bottom = 4680.0
-rect_scale = Vector2( 0.3, 0.155 )
+margin_left = -98.4126
+margin_top = -7.93701
+margin_right = 2061.59
+margin_bottom = 4672.06
+rect_scale = Vector2( 0.31, 0.31 )
 texture = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
