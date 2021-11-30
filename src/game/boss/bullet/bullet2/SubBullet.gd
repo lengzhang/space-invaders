@@ -12,6 +12,8 @@ onready var Parent = get_parent().get_parent()
 onready var angle = 0
 onready var radio = 0
 
+var destoryable = true
+
 func _ready():
 	bulletSpeed = bulletSpeed + (15 * GameManager.level)
 	add_to_group("enemy-bullets")
@@ -28,9 +30,10 @@ func _physics_process(delta):
 	position.y = sin(angle) * radio
 
 func hurt():
-	if Parent.has_method("increaseScore"):
-		Parent.increaseScore(1)
-	destroy()
+	if destoryable:
+		if Parent.has_method("increaseScore"):
+			Parent.increaseScore(1)
+		destroy()
 	
 func destroy():
 	queue_free()
@@ -40,3 +43,11 @@ func _on_HitBox_area_entered(area):
 	if parent.name == "Player":
 		parent.hurt(attack)
 		destroy()
+
+func set_destoryable(value):
+	self.destoryable = value
+	$Sprite.frame = (
+		15 if self.destoryable
+		else 14
+	)
+	

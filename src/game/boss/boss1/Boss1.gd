@@ -30,7 +30,7 @@ const WAVES = [
 		[-1, -1, 0, 0, 0, 0, -1, -1],
 		[-1, -1, 0, 0, 0, 0, -1, -1],
 	]],
-	[0.5, [
+	[1, [
 		[-1, -1, -1, -1, -1, -1, -1, -1],
 		[-1, -1, -1, -1, -1, -1, -1, -1],
 		[-1, -1, -1, 1, 1, -1, -1, -1],
@@ -45,14 +45,14 @@ const WAVES = [
 		[-1, -1, -1, -1, -1, -1, -1, -1],
 		[-1, -1, -1, 1, 1, 1, 1, 1],
 	]],
-	[0.5, [
+	[1, [
 		[-1, -1, -1, -1, -1, -1, -1, -1],
 		[-1, -1, -1, -1, -1, -1, -1, -1],
 		[0, 0, 0, 0, 0, 0, 0, 0],
 		[-1, -1, -1, -1, -1, -1, -1, -1],
-		[0, 0, 0, 0, 1, 1, 1, 1],
+		[0, 0, 0, 1, 1, 1, 1, 1],
 		[-1, -1, -1, -1, -1, -1, -1, -1],
-		[1, 1, 1, 1, 0, 0, 0, 0],
+		[1, 1, 1, 1, 1, 0, 0, 0],
 	]]
 ]
 
@@ -77,7 +77,7 @@ onready var HitBox = $HitBox
 onready var HPBar = $HPBar
 
 onready var default_sacle = BossSprite.scale
-onready var max_hp = MAX_HP * GameManager.level
+onready var max_hp = MAX_HP * GameManager.level * 3
 onready var hp = max_hp
 onready var attack = 1000 + (50 * GameManager.level)
 
@@ -137,7 +137,7 @@ func process_fire():
 	var damage_percent = (max_hp - hp) / float(max_hp)
 	var new_stage = (
 		0 if damage_percent < 0.25
-		else 1 if damage_percent < 0.8
+		else 1 if damage_percent < 0.7
 		else 2
 	)
 	if stage != new_stage:

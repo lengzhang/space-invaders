@@ -1,21 +1,32 @@
 extends KinematicBody2D
 
+
 var bulletSpeed = 100
 const attack = 10
 
 onready var parent = get_parent()
 
+onready var destoryable = true
+
 func _ready():
+	var randomNumberGenerator = RandomNumberGenerator.new()
+	randomNumberGenerator.randomize()
+	destoryable = randomNumberGenerator.randi_range(0, 2) != 2
 	bulletSpeed = bulletSpeed + (15 * GameManager.level)
 	add_to_group("enemy-bullets")
+	$Sprite.frame  = (
+		15 if destoryable
+		else 14
+	)
 
 func _physics_process(delta):
 	move_and_collide(Vector2.DOWN * delta * bulletSpeed)
 
 func hurt():
-	if parent.has_method("increaseScore"):
-		parent.increaseScore(1)
-	destroy()
+	if destoryable:
+		if parent.has_method("increaseScore"):
+			parent.increaseScore(1)
+		destroy()
 	
 func destroy():
 	queue_free()
