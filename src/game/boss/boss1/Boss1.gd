@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const MOVE_SPEED = 50
-const OFFSET_Y = 75
+const OFFSET_Y = 100
 const MAX_HP = 1500
 const FIRE_WIN_COUNT = 8
 

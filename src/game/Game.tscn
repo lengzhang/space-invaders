@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/game/pause/PausePopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/game/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/game/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/game/Game.gd" type="Script" id=4]
-[ext_resource path="res://assets/spaceshooter_ByJanaChumi/background.png" type="Texture" id=5]
 [ext_resource path="res://src/gui/GUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Soundtracks/draft-monk-ambience.mp3" type="AudioStream" id=7]
 [ext_resource path="res://src/game/GameCamera.gd" type="Script" id=8]
@@ -34,37 +33,8 @@ glow_hdr_scale = 4.0
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-margin_left = -120.0
-margin_top = -280.0
-margin_right = 600.0
-margin_bottom = 1000.0
-texture = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Wall" parent="." instance=ExtResource( 3 )]
-
-[node name="GUI" parent="Wall" instance=ExtResource( 6 )]
-anchor_right = 0.0
-margin_top = 684.0
-margin_right = 480.0
-margin_bottom = 720.0
-
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 240, 640 )
-
-[node name="PausePopup" parent="." instance=ExtResource( 1 )]
-margin_left = 240.0
-margin_top = 342.0
-margin_right = 240.0
-margin_bottom = 342.0
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-autoplay = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
 
 [node name="GameCamera" type="Camera2D" parent="."]
 position = Vector2( 240.5, 360 )
@@ -76,6 +46,10 @@ script = ExtResource( 8 )
 [node name="Frequency" type="Timer" parent="GameCamera"]
 
 [node name="Duration" type="Timer" parent="GameCamera"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource( 9 )
@@ -185,8 +159,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+[node name="PausePopup" parent="." instance=ExtResource( 1 )]
+margin_left = 240.0
+margin_top = 342.0
+margin_right = 240.0
+margin_bottom = 342.0
+
+[node name="Wall" parent="." instance=ExtResource( 3 )]
+
+[node name="GUI" parent="Wall" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 480.0
+margin_bottom = 720.0
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 240, 640 )
 
 [connection signal="timeout" from="GameCamera/Frequency" to="GameCamera" method="_on_Frequency_timeout"]
 [connection signal="timeout" from="GameCamera/Duration" to="GameCamera" method="_on_Duration_timeout"]

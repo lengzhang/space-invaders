@@ -7,7 +7,8 @@ var scoreFilePath = "user://scores.cfg"
 var randomNumberGenerator = RandomNumberGenerator.new()
 
 onready var HPBar = $Wall/GUI/VBoxContainer/HPBar
-onready var Score = $Wall/GUI/VBoxContainer/Info/Score
+onready var Score = $Wall/GUI/VBoxContainer/Container/Info/Score
+onready var Level = $Wall/GUI/VBoxContainer/Container/Info/Level
 onready var PausePopup = $PausePopup
 onready var GameCamera = $GameCamera
 
@@ -50,12 +51,12 @@ var waveCount = 0
 
 var is_in_boss = false
 var has_boss = false
-var boss
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	HPBar.maxHPValue = player.maxHealth
 	HPBar.setHealth(player.hp)
+	Level.text = String(GameManager.level)
 	self.add_child(coinSoundEffect)
 	coinSoundEffect.stream = load("res://assets/SoundEffect/coin1.wav")
 	self.add_child(startGameSoundEffect)
@@ -83,6 +84,7 @@ func _process(delta):
 			
 	if GameManager.level != new_level:
 		GameManager.level = new_level
+		Level.text = String(GameManager.level)
 		if GameManager.level > 4:
 			is_in_boss = true
 	
@@ -139,8 +141,8 @@ func generateEnemy():
 			else randomNumberGenerator.randi_range(0, 2) if GameManager.level <= 9
 			else randomNumberGenerator.randi_range(0, 3)
 		)
+
 		var enemy = enemies[index].instance()
-			
 		
 		var xOffset = randomNumberGenerator.randf_range((
 			sectionWidth / 2 if pos == 0
@@ -203,7 +205,7 @@ func generateBoss():
 	bossBackgroundMusic.play()
 	startGameSoundEffect.stop()
 	has_boss = true
-	boss = bosses[0].instance()
+	var boss = bosses[0].instance()
 	add_child(boss)
 	boss_count += 1
 	
@@ -220,10 +222,6 @@ func increaseScore(value):
 	coinSoundEffect.play()
 	score += value
 	Score.text = String(score)
-	
-	# Generate boss every GENERATE_BOSS_SCORE
-#	if !is_in_boss and score >= GENERATE_BOSS_SCORE * (boss_count + 1):
-#		is_in_boss = true
 		
 func hurtPlayer():
 	player.hurt(GameManager.level)
