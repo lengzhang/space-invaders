@@ -222,9 +222,13 @@ func pause():
 	PausePopup.pause()
 
 func gameOver():
+	# Reset Game data
+	GameManager.hp = GameManager.max_hp
+	GameManager.energy = 0
 	GameManager.level = 1 
 	GameManager.numPowerUps = 0
 	GameManager.multiShotBonus = 2
+	
 	var config = ConfigFile.new()
 	
 	var err = config.load(scoreFilePath)

@@ -3,6 +3,7 @@ extends KinematicBody2D
 const SPEED = 250
 const FIRE_COOL_DOWN = 0.2
 const DURATION_POWERUP = 15
+const MAX_BARRIER_COUNT = 3
 
 const BULLET_POWER = "res://src/game/player/bullets/Power.tscn"
 const BULLET_SUPERPOWER = "res://src/game/player/bullets/SuperPower.tscn"
@@ -14,9 +15,8 @@ onready var Explosion = preload("res://src/game/player/explosion/Explosion.tscn"
 onready var Player = $"."
 onready var Ship = $"Ship"
 onready var HurtBox = $HurtBox
-onready var Barriers = [$Barrier1, $Barrier2, $Barrier3]
-onready var max_barrier_count = Barriers.size()
-onready var HurtBoxShapes = [$HurtBox/Ship, $HurtBox/Barrier1, $HurtBox/Barrier2, $HurtBox/Barrier3]
+onready var Barrier = $Barrier
+onready var BarrierShape = $HurtBox/Barrier
 
 onready var shipMode = 0
 onready var switchCoolDown = 0
@@ -35,7 +35,6 @@ onready var hurtSoundEffect = AudioStreamPlayer.new()
 onready var barrier_count = 0
 
 func _ready():
-	GameManager.energy = 0
 	update_barrier()
 	self.add_child(fireSoundEffect)
 	fireSoundEffect.stream = load("res://assets/SoundEffect/shoot23.mp3")
@@ -81,10 +80,10 @@ func _physics_process(delta):
 	# Increase 1 energy every second
 	GameManager.energy += delta
 	# Active barriers
-	if GameManager.energy >= 50 and barrier_count < max_barrier_count and Input.is_action_just_pressed("ship_barrier"):
+	if GameManager.energy >= 50 and barrier_count < MAX_BARRIER_COUNT and Input.is_action_just_pressed("ship_barrier"):
 		GameManager.energy -= 50
 		GameManager.energy = min(GameManager.energy, GameManager.max_energy)
-		barrier_count = max_barrier_count
+		barrier_count = MAX_BARRIER_COUNT
 		update_barrier()
 		
 	# Timer for Damage PowerUp
@@ -215,15 +214,27 @@ func heal(health):
 	GameManager.hp = min(GameManager.hp + health, GameManager.max_hp)
 
 func update_barrier():
-	# Update sprites
-	for i in range(0, Barriers.size()):
-		if i <= barrier_count - 1:
-			Barriers[i].show()
-		else:
-			Barriers[i].hide()
-	# Update hurt box shapes
-	for i in range(0, HurtBoxShapes.size()):
-		if i == barrier_count:
-			HurtBoxShapes[i].show()
-		else:
-			HurtBoxShapes[i].hide()
+	#Update sprite
+	if barrier_count > 0:
+		Barrier.show()
+		Barrier.self_modulate = (
+			Color.red if barrier_count == 1
+			else Color.orange if barrier_count == 2
+			else Color.yellow
+		)
+		BarrierShape.show()
+	else:
+		Barrier.hide()
+		BarrierShape.hide()
+#	# Update sprites
+#	for i in range(0, Barriers.size()):
+#		if i <= barrier_count - 1:
+#			Barriers[i].show()
+#		else:
+#			Barriers[i].hide()
+#	# Update hurt box shapes
+#	for i in range(0, HurtBoxShapes.size()):
+#		if i == barrier_count:
+#			HurtBoxShapes[i].show()
+#		else:
+#			HurtBoxShapes[i].hide()

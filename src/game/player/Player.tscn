@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/game/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/ship/spaceships_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://assets/ship/shield.png" type="Texture" id=3]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 64.0
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 10
@@ -29,31 +26,12 @@ polygon = PoolVector2Array( -8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 
 [node name="Ship" type="CollisionPolygon2D" parent="HurtBox"]
 polygon = PoolVector2Array( -8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 8, -16, -8 )
 
-[node name="Barrier1" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 0, 8 )
-scale = Vector2( 0.5, 0.5 )
-shape = SubResource( 1 )
+[node name="Barrier" type="CollisionPolygon2D" parent="HurtBox"]
+scale = Vector2( 0.6, 0.6 )
+polygon = PoolVector2Array( -64, 0, -56, -16, -32, -40, -16, -48, 16, -48, 32, -40, 56, -16, 64, 0, 56, 0, 0, -40, -56, 0 )
 
-[node name="Barrier2" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 0, 10 )
-scale = Vector2( 0.55, 0.625 )
-shape = SubResource( 1 )
-
-[node name="Barrier3" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 0, 12 )
-scale = Vector2( 0.6, 0.775 )
-shape = SubResource( 1 )
-
-[node name="Barrier1" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
-
-[node name="Barrier2" type="Sprite" parent="."]
-scale = Vector2( 0.55, 0.625 )
-texture = ExtResource( 3 )
-
-[node name="Barrier3" type="Sprite" parent="."]
-scale = Vector2( 0.6, 0.775 )
+[node name="Barrier" type="Sprite" parent="."]
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
 
 [connection signal="area_entered" from="HurtBox" to="." method="onAreaEntered"]
