@@ -16,7 +16,7 @@ func _ready():
 	add_to_group("enemy-bullets")
 	$Sprite.frame  = (
 		15 if destoryable
-		else 14
+		else 11
 	)
 
 func _physics_process(delta):

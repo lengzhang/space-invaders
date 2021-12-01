@@ -48,6 +48,6 @@ func set_destoryable(value):
 	self.destoryable = value
 	$Sprite.frame = (
 		15 if self.destoryable
-		else 14
+		else 11
 	)
 	

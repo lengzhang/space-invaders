@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 [node name="Sprite" type="Sprite" parent="." groups=[
 "enemy-bullets",
 ]]
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 hframes = 6
 vframes = 3
@@ -22,11 +23,13 @@ region_rect = Rect2( 5, 3, 306, 190 )
 [node name="Shape" type="CollisionPolygon2D" parent="." groups=[
 "enemy-bullets",
 ]]
+scale = Vector2( 2, 2 )
 polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 8, 0 )
 
 [node name="HitBox" type="Area2D" parent="." groups=[
 "enemy-bullets",
 ]]
+scale = Vector2( 2, 2 )
 
 [node name="CollisionArea" type="CollisionPolygon2D" parent="HitBox" groups=[
 "enemy-bullets",
