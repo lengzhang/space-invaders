@@ -1,32 +1,25 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/spaceshooter_ByJanaChumi/items/bullets/14.png" type="Texture" id=1]
+[ext_resource path="res://assets/bullets/bullets_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://src/game/player/bullets/Power.gd" type="Script" id=2]
 
-[node name="Power" type="KinematicBody2D" groups=[
-"player-bullets",
-]]
+[node name="Power" type="KinematicBody2D" groups=["player-bullets"]]
 collision_layer = 12
 collision_mask = 0
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="." groups=[
-"player-bullets",
-]]
+[node name="Sprite" type="Sprite" parent="." groups=["player-bullets"]]
 texture = ExtResource( 1 )
+hframes = 6
+vframes = 3
+frame = 13
 
-[node name="Shape" type="CollisionPolygon2D" parent="." groups=[
-"player-bullets",
-]]
+[node name="Shape" type="CollisionPolygon2D" parent="." groups=["player-bullets"]]
 polygon = PoolVector2Array( 0, -8, -8, 0, 0, 8, 8, 0 )
 
-[node name="HitBox" type="Area2D" parent="." groups=[
-"player-bullets",
-]]
+[node name="HitBox" type="Area2D" parent="." groups=["player-bullets"]]
 
-[node name="CollisionArea" type="CollisionPolygon2D" parent="HitBox" groups=[
-"player-bullets",
-]]
+[node name="CollisionArea" type="CollisionPolygon2D" parent="HitBox" groups=["player-bullets"]]
 polygon = PoolVector2Array( 0, -8, -8, 0, 8, 0 )
 
 [connection signal="area_entered" from="HitBox" to="." method="onEnteredArea"]

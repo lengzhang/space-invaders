@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/game/player/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/ship/spaceships_spritesheet.png" type="Texture" id=2]
 
 [node name="Player" type="KinematicBody2D"]
 z_index = 10
@@ -11,6 +12,10 @@ script = ExtResource( 1 )
 [node name="Ship" type="Sprite" parent="."]
 position = Vector2( 0.500031, 0.500031 )
 scale = Vector2( 0.570175, 0.570175 )
+texture = ExtResource( 2 )
+hframes = 8
+vframes = 4
+frame = 15
 
 [node name="Shape" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -8, -16, 8, -16, 16, -8, 16, 8, 8, 16, -8, 16, -16, 8, -16, -8 )

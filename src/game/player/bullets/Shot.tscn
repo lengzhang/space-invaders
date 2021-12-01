@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/spaceshooter_ByJanaChumi/items/bullets/11.png" type="Texture" id=1]
+[ext_resource path="res://assets/bullets/bullets_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://src/game/player/bullets/Shot.gd" type="Script" id=2]
 
 [node name="Shot" type="KinematicBody2D" groups=["player-bullets"]]
@@ -10,6 +10,9 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="." groups=["player-bullets"]]
 texture = ExtResource( 1 )
+hframes = 6
+vframes = 3
+frame = 10
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=["player-bullets"]]
 position = Vector2( 4, 10 )

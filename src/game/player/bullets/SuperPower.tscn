@@ -1,11 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/spaceshooter_ByJanaChumi/items/bullets/7.png" type="Texture" id=1]
+[ext_resource path="res://assets/bullets/bullets_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://src/game/player/bullets/SuperPower.gd" type="Script" id=2]
 
-[node name="SuperPower" type="KinematicBody2D" groups=[
-"player-bullets",
-]]
+[node name="SuperPower" type="KinematicBody2D" groups=["player-bullets"]]
 scale = Vector2( 1.5, 1.5 )
 collision_layer = 12
 collision_mask = 0
@@ -15,23 +13,20 @@ script = ExtResource( 2 )
 modulate = Color( 2.25098, 3.96471, 0, 1 )
 self_modulate = Color( 1.00784, 0.443137, 0, 1 )
 texture = ExtResource( 1 )
+hframes = 6
+vframes = 3
+frame = 6
 
-[node name="Shape" type="CollisionPolygon2D" parent="." groups=[
-"player-bullets",
-]]
+[node name="Shape" type="CollisionPolygon2D" parent="." groups=["player-bullets"]]
 visible = false
 scale = Vector2( 1.5, 1.5 )
 polygon = PoolVector2Array( 0, -11, -5, -9, 0, 11, 5, -9 )
 
-[node name="HitBox" type="Area2D" parent="." groups=[
-"player-bullets",
-]]
+[node name="HitBox" type="Area2D" parent="." groups=["player-bullets"]]
 visible = false
 scale = Vector2( 1.5, 1.5 )
 
-[node name="CollisionArea" type="CollisionPolygon2D" parent="HitBox" groups=[
-"player-bullets",
-]]
+[node name="CollisionArea" type="CollisionPolygon2D" parent="HitBox" groups=["player-bullets"]]
 scale = Vector2( 1.5, 1.5 )
 polygon = PoolVector2Array( 0, -11, -6, -9, -6, -2, 0, 1, 6, -2, 6, -9 )
 

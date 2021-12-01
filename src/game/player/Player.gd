@@ -4,9 +4,6 @@ const SPEED = 250
 const FIRE_COOL_DOWN = 0.2
 const DURATION_POWERUP = 15
 
-const SHIP_TEXTURE_0 = "res://assets/spaceshooter_ByJanaChumi/items/16.png"
-const SHIP_TEXTURE_1 = "res://assets/spaceshooter_ByJanaChumi/items/17.png"
-
 const BULLET_POWER = "res://src/game/player/bullets/Power.tscn"
 const BULLET_SUPERPOWER = "res://src/game/player/bullets/SuperPower.tscn"
 const BULLET_SHOT = "res://src/game/player/bullets/Shot.tscn"
@@ -209,4 +206,7 @@ func heal(health):
 func setShipMode(mode):
 	if mode != shipMode:
 		shipMode = mode
-		Ship.texture = preload(SHIP_TEXTURE_0) if shipMode == 0 else preload(SHIP_TEXTURE_1)
+		Ship.frame = (
+			15 if shipMode == 0
+			else 16
+		)
