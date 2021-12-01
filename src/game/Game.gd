@@ -223,8 +223,8 @@ func increaseScore(value):
 	score += value
 	Score.text = String(score)
 		
-func hurtPlayer():
-	player.hurt(GameManager.level)
+func hurtPlayer(ignore_barrier = false):
+	player.hurt(GameManager.level, ignore_barrier)
 	
 func pause():
 	PausePopup.pause()

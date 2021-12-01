@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 onready var Explosion = preload("res://src/game/enemy/explosion/Explosion.tscn")
 
-onready var player = $"Player"
 onready var Parent = get_parent()
 onready var HPBar: ProgressBar = $HPBar
 
@@ -42,7 +41,8 @@ func hurt(damage):
 	hp -= damage
 	update_hp_bar()
 
-	if hp <= 0:		
+	if hp <= 0:
+		GameManager.energy = min(GameManager.energy + 10, GameManager.max_energy)
 		kill()
 		if Parent.has_method("increaseScore"):
 			Parent.increaseScore(max_hp)

@@ -13,7 +13,3 @@ func setHealth(hp):
 	hpValue = hp
 	value = round(float(hp) / maxHPValue * 100)
 	percentage.text = String(value)
-
-
-func onPressed():
-	pass # Replace with function body.
