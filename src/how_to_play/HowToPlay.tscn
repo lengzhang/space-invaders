@@ -6,15 +6,15 @@
 [ext_resource path="res://assets/Asteroid/asteroid-big-sprite.png" type="Texture" id=4]
 [ext_resource path="res://src/main_menu/ParallaxBackground2.gd" type="Script" id=5]
 
-[sub_resource type="DynamicFont" id=34]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=35]
+[sub_resource type="DynamicFont" id=2]
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=36]
+[sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 2 )
 
 [sub_resource type="AtlasTexture" id=4]
@@ -167,7 +167,7 @@ flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 2639, 109, 91 )
 
-[sub_resource type="SpriteFrames" id=37]
+[sub_resource type="SpriteFrames" id=34]
 animations = [ {
 "frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
 "loop": true,
@@ -183,8 +183,8 @@ margin_left = 64.0
 margin_top = 64.0
 margin_right = 64.0
 rect_min_size = Vector2( 352, 592 )
-custom_fonts/bold_font = SubResource( 34 )
-custom_fonts/normal_font = SubResource( 35 )
+custom_fonts/bold_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[table=3]
 	[cell][b]KEY[/b][/cell]		[cell]        [/cell]		[cell][b]ACTION[/b][/cell]
@@ -193,9 +193,9 @@ bbcode_text = "[table=3]
 	[cell]LEFT[/cell]				[cell][/cell]				[cell]Move left[/cell]
 	[cell]RIGHT[/cell]			[cell][/cell]				[cell]Move right[/cell]
 	[cell]Space[/cell]				[cell][/cell]				[cell]Fire bullet[/cell]
-	[cell]X[/cell]						[cell][/cell]				[cell]Switch ship mode[/cell]
+	[cell]X[/cell]						[cell][/cell]				[cell]Activate Barrier[/cell]
 [/table]"
-text = "KEY        ACTIONUPMove upDOWNMove downLEFTMove leftRIGHTMove rightSpaceFire bulletXSwitch ship mode"
+text = "KEY        ACTIONUPMove upDOWNMove downLEFTMove leftRIGHTMove rightSpaceFire bulletXActivate Barrier"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -210,7 +210,7 @@ margin_right = 56.0
 margin_bottom = 712.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 36 )
+custom_fonts/font = SubResource( 3 )
 text = "< ESC"
 valign = 2
 __meta__ = {
@@ -227,40 +227,40 @@ motion_mirroring = Vector2( 0, 2500 )
 [node name="asteroid1" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 105.208, -87.5814 )
 z_index = 1
-frames = SubResource( 37 )
-frame = 22
+frames = SubResource( 34 )
+frame = 21
 playing = true
 
 [node name="asteroid2" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 370.496, 129.9 )
 rotation = -1.52891
 z_index = 1
-frames = SubResource( 37 )
-frame = 21
+frames = SubResource( 34 )
+frame = 20
 playing = true
 
 [node name="asteroid3" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 113.604, 218.579 )
 rotation = 2.20784
 z_index = 1
-frames = SubResource( 37 )
-frame = 20
+frames = SubResource( 34 )
+frame = 19
 playing = true
 
 [node name="asteroid4" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 91.7786, 730.818 )
 rotation = 3.31613
 z_index = 1
-frames = SubResource( 37 )
-frame = 19
+frames = SubResource( 34 )
+frame = 18
 playing = true
 
 [node name="asteroid5" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 374.491, 838.699 )
 rotation = -1.01927
 z_index = 1
-frames = SubResource( 37 )
-frame = 19
+frames = SubResource( 34 )
+frame = 18
 playing = true
 
 [node name="asteroid6" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -268,8 +268,8 @@ position = Vector2( 114.374, 1077.82 )
 rotation = -2.20784
 scale = Vector2( 2, 1 )
 z_index = 1
-frames = SubResource( 37 )
-frame = 18
+frames = SubResource( 34 )
+frame = 17
 playing = true
 
 [node name="asteroid7" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -277,16 +277,16 @@ position = Vector2( 117.53, 1497.51 )
 rotation = 0.708604
 scale = Vector2( 1, 2 )
 z_index = 1
-frames = SubResource( 37 )
-frame = 17
+frames = SubResource( 34 )
+frame = 16
 playing = true
 
 [node name="asteroid8" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
 position = Vector2( 357.986, 1199.51 )
 rotation = 2.71748
 z_index = 1
-frames = SubResource( 37 )
-frame = 16
+frames = SubResource( 34 )
+frame = 15
 playing = true
 
 [node name="Background" type="TextureRect" parent="ParallaxBackground2/ParallaxLayer"]

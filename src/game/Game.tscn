@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/game/pause/PausePopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/game/player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/game/Wall.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/game/Game.gd" type="Script" id=4]
 [ext_resource path="res://src/gui/GUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/Soundtracks/draft-monk-ambience.mp3" type="AudioStream" id=7]
 [ext_resource path="res://src/game/GameCamera.gd" type="Script" id=8]
 [ext_resource path="res://src/game/ParallaxBackgroundForGame.gd" type="Script" id=9]
 [ext_resource path="res://assets/wallpapers/wallpaper1.jpg" type="Texture" id=10]
@@ -46,10 +45,6 @@ script = ExtResource( 8 )
 [node name="Frequency" type="Timer" parent="GameCamera"]
 
 [node name="Duration" type="Timer" parent="GameCamera"]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource( 9 )

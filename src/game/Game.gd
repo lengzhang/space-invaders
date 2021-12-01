@@ -57,7 +57,7 @@ func _ready():
 	self.add_child(coinSoundEffect)
 	coinSoundEffect.stream = load("res://assets/SoundEffect/coin1.wav")
 	self.add_child(startGameSoundEffect)
-	startGameSoundEffect.stream = load("res://assets/SoundEffect/startGame.wav")
+	startGameSoundEffect.stream = load("res://assets/Soundtracks/draft-monk-ambience.mp3")
 	self.add_child(bossGameSoundEffect)
 	bossGameSoundEffect.stream = load("res://assets/SoundEffect/warning.wav")
 	self.add_child(bossBackgroundMusic)
