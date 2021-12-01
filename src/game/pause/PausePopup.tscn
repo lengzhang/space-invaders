@@ -12,14 +12,11 @@ font_data = ExtResource( 2 )
 
 [node name="PausePopup" type="Popup"]
 pause_mode = 2
-anchor_left = -0.25
-anchor_top = -0.061
-anchor_right = 0.25
-anchor_bottom = 0.061
-margin_left = 120.0
-margin_top = 43.92
-margin_right = -120.0
-margin_bottom = -43.92
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -31,10 +28,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -120.0
-margin_top = -44.0
+margin_top = -68.0
 margin_right = 120.0
-margin_bottom = 44.0
-rect_min_size = Vector2( 240, 88 )
+margin_bottom = 68.0
+rect_min_size = Vector2( 240, 136 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.352941, 0.352941, 0.352941, 1 )
@@ -48,10 +45,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -120.0
-margin_top = -44.0
+margin_top = -68.0
 margin_right = 120.0
-margin_bottom = 44.0
-rect_min_size = Vector2( 240, 88 )
+margin_bottom = 20.0
+rect_min_size = Vector2( 240, 136 )
 custom_fonts/font = SubResource( 1 )
 text = "1"
 align = 1
@@ -67,15 +64,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -104.0
-margin_top = -28.0
+margin_top = -52.0
 margin_right = 104.0
-margin_bottom = 28.0
+margin_bottom = 52.0
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Resume" type="ColorRect" parent="Menu"]
 margin_right = 208.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 208, 16 )
+margin_bottom = 32.0
+rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.501961, 0.501961, 0.501961, 1 )
@@ -84,24 +84,28 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Menu/Resume"]
-anchor_right = 1.0
-anchor_bottom = 0.75
-margin_bottom = 4.0
-rect_min_size = Vector2( 208, 16 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -25.5
+margin_top = -7.0
+margin_right = 25.5
+margin_bottom = 7.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "RESUME"
 align = 1
-valign = 2
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Restart" type="ColorRect" parent="Menu"]
-margin_top = 20.0
+margin_top = 36.0
 margin_right = 208.0
-margin_bottom = 36.0
-rect_min_size = Vector2( 208, 16 )
+margin_bottom = 68.0
+rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.501961, 0.501961, 0.501961, 1 )
@@ -114,10 +118,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -104.0
-margin_top = -8.0
-margin_right = 104.0
-margin_bottom = 8.0
+margin_left = -26.5
+margin_top = -7.0
+margin_right = 26.5
+margin_bottom = 7.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "RESTART"
@@ -128,10 +132,10 @@ __meta__ = {
 }
 
 [node name="Quit" type="ColorRect" parent="Menu"]
-margin_top = 40.0
+margin_top = 72.0
 margin_right = 208.0
-margin_bottom = 56.0
-rect_min_size = Vector2( 208, 16 )
+margin_bottom = 104.0
+rect_min_size = Vector2( 208, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color( 0.501961, 0.501961, 0.501961, 1 )
@@ -144,10 +148,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -104.0
-margin_top = -8.0
-margin_right = 104.0
-margin_bottom = 8.0
+margin_left = -16.5
+margin_top = -7.0
+margin_right = 16.5
+margin_bottom = 7.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "QUIT"

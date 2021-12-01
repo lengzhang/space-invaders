@@ -160,10 +160,6 @@ __meta__ = {
 }
 
 [node name="PausePopup" parent="." instance=ExtResource( 1 )]
-margin_left = 240.0
-margin_top = 342.0
-margin_right = 240.0
-margin_bottom = 342.0
 
 [node name="Wall" parent="." instance=ExtResource( 3 )]
 
