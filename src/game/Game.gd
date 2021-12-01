@@ -80,10 +80,11 @@ func _process(delta):
 			new_level += 1
 			
 	if GameManager.level != new_level:
-		GameManager.level = new_level
-		Level.text = String(GameManager.level)
-		if GameManager.level > 4:
+		if new_level > 4:
 			is_in_boss = true
+		else:
+			GameManager.level = new_level
+			Level.text = String(GameManager.level)
 	
 	enemyCoolDown -= delta
 		
@@ -208,6 +209,8 @@ func killed_boss():
 	has_boss = false
 	enemyCoolDown = 0
 	
+	GameManager.level += 1
+	Level.text = String(GameManager.level)
 
 func increaseScore(value):
 	coinSoundEffect.volume_db = -20
