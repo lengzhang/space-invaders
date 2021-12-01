@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/game/pause/PausePopup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/game/player/Player.tscn" type="PackedScene" id=2]
@@ -18,6 +18,18 @@
 [ext_resource path="res://assets/wallpapers/wallpaper8.jpg" type="Texture" id=17]
 [ext_resource path="res://assets/wallpapers/wallpaper10.jpg" type="Texture" id=18]
 [ext_resource path="res://assets/wallpapers/wallpaper9.jpg" type="Texture" id=19]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+ambient_light_energy = 0.0
+glow_enabled = true
+glow_intensity = 8.0
+glow_strength = 0.56
+glow_bloom = 1.0
+glow_blend_mode = 1
+glow_hdr_threshold = 4.0
+glow_hdr_luminance_cap = 256.0
+glow_hdr_scale = 4.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 4 )
@@ -95,9 +107,10 @@ __meta__ = {
 
 [node name="TextureRect3" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
 visible = false
-margin_left = -100.0
-margin_right = 3276.0
-margin_bottom = 6000.0
+margin_left = -263.316
+margin_top = -7.49152
+margin_right = 3112.68
+margin_bottom = 5992.51
 rect_scale = Vector2( 0.3, 0.25 )
 texture = ExtResource( 13 )
 __meta__ = {
@@ -109,7 +122,7 @@ visible = false
 margin_left = -102.997
 margin_right = 3273.0
 margin_bottom = 6000.0
-rect_scale = Vector2( 0.4, 0.25 )
+rect_scale = Vector2( 0.24, 0.24 )
 texture = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -144,7 +157,7 @@ visible = false
 margin_left = -160.544
 margin_right = 1924.46
 margin_bottom = 3706.0
-rect_scale = Vector2( 0.4, 0.4 )
+rect_scale = Vector2( 0.4, 0.39 )
 texture = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -171,6 +184,9 @@ texture = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
 
 [connection signal="timeout" from="GameCamera/Frequency" to="GameCamera" method="_on_Frequency_timeout"]
 [connection signal="timeout" from="GameCamera/Duration" to="GameCamera" method="_on_Duration_timeout"]
