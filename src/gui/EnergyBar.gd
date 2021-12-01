@@ -4,7 +4,7 @@ onready var Bar = $"."
 onready var Percentage = $Value
 onready var KeyX = $KeyX
 
-onready var percentage = 0
+onready var percentage = GameManager.energy
 
 func _ready():
 	update_bar()
@@ -15,10 +15,10 @@ func _process(delta):
 	update_bar()
 	var diff = percentage - value
 	if diff > 0:
-		value += max(diff * delta, delta)
+		value += max(diff * delta * 2.5, delta)
 		value = min(value, percentage)
 	elif diff < 0:
-		value -= max(-diff * delta, delta)
+		value -= max(-diff * delta * 2.5, delta)
 		value = max(value, percentage)
 	
 	

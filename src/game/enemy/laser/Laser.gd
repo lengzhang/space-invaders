@@ -31,7 +31,6 @@ func _ready():
 	if hp > 150:
 		max_hp = 150
 	hp = max_hp
-	update_hp_bar()
 
 	randomNumberGenerator.randomize()
 	controlLaser(false)

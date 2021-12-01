@@ -23,6 +23,15 @@ func _ready():
 
 func _physics_process(delta):
 	on_physics_process(delta)
+	
+	if HPBar.value != hp:
+		var diff = hp - HPBar.value
+		if diff > 0:
+			HPBar.value += max(diff * delta * 10, delta)
+			HPBar.value = min(HPBar.value, hp)
+		elif diff < 0:
+			HPBar.value -= max(-diff * delta * 10, delta)
+			HPBar.value = max(HPBar.value, hp)
 
 func on_physics_process(delta):
 	move_and_collide(Vector2.DOWN * delta * moveSpeed)
@@ -39,10 +48,9 @@ func hurt(damage):
 	hurtSoundEffect.volume_db = -5
 	hurtSoundEffect.play()
 	hp -= damage
-	update_hp_bar()
 
 	if hp <= 0:
-		GameManager.energy = min(GameManager.energy + 10, GameManager.max_energy)
+		GameManager.energy = min(GameManager.energy + 1, GameManager.max_energy)
 		kill()
 		if Parent.has_method("increaseScore"):
 			Parent.increaseScore(max_hp)
@@ -56,6 +64,3 @@ func onExitedBody(body):
 			queue_free()
 		else:
 			isInGame = true
-
-func update_hp_bar():
-	HPBar.value = round(float(hp) / max_hp * 100)

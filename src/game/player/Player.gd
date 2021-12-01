@@ -21,7 +21,6 @@ onready var HurtBoxShapes = [$HurtBox/Ship, $HurtBox/Barrier1, $HurtBox/Barrier2
 onready var shipMode = 0
 onready var switchCoolDown = 0
 onready var maxHealth = 100
-onready var hp = 100
 
 onready var Velocity = Vector2()
 onready var fireCoolDown = FIRE_COOL_DOWN
@@ -196,8 +195,8 @@ func fire():
 	
 func hurt(damage, ignore_barrier = false):
 	if barrier_count <= 0 or ignore_barrier:
-		hp -= damage
-		hp = max(hp, 0)
+		GameManager.hp -= damage
+		GameManager.hp = max(GameManager.hp, 0)
 	else:
 		barrier_count -= 1
 		update_barrier()
@@ -205,7 +204,7 @@ func hurt(damage, ignore_barrier = false):
 	hurtSoundEffect.volume_db = 10
 	hurtSoundEffect.play()
 	get_parent().shake()
-	if hp <= 0:
+	if GameManager.hp <= 0:
 		var explosion = Explosion.instance()
 		explosion.position = position
 		hide()
@@ -213,9 +212,7 @@ func hurt(damage, ignore_barrier = false):
 	
 func heal(health):
 	healSoundEffect.play()
-	hp += health
-	if hp >= maxHealth:
-		hp = maxHealth
+	GameManager.hp = min(GameManager.hp + health, GameManager.max_hp)
 
 func update_barrier():
 	# Update sprites

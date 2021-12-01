@@ -6,7 +6,6 @@ var scoreFilePath = "user://scores.cfg"
 
 var randomNumberGenerator = RandomNumberGenerator.new()
 
-onready var HPBar = $Wall/GUI/VBoxContainer/HPBar
 onready var Score = $Wall/GUI/VBoxContainer/Container/Info/Score
 onready var Level = $Wall/GUI/VBoxContainer/Container/Info/Level
 onready var PausePopup = $PausePopup
@@ -54,8 +53,6 @@ var has_boss = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	HPBar.maxHPValue = player.maxHealth
-	HPBar.setHealth(player.hp)
 	Level.text = String(GameManager.level)
 	self.add_child(coinSoundEffect)
 	coinSoundEffect.stream = load("res://assets/SoundEffect/coin1.wav")
@@ -108,11 +105,6 @@ func _process(delta):
 			
 			
 		generatePowerups()
-		
-	if !weakref(player).get_ref():
-		HPBar.setHealth(0)
-	elif player.hp != HPBar.value:
-		HPBar.setHealth(player.hp)
 
 func generateEnemy():
 	randomNumberGenerator.randomize()

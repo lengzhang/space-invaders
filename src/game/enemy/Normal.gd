@@ -7,4 +7,4 @@ func _ready():
 	hp = max_hp
 	moveSpeed = moveSpeed + (10 * GameManager.level)
 	attack = attack + (2 * GameManager.level)
-	update_hp_bar()
+

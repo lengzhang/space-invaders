@@ -102,7 +102,8 @@ func _ready():
 		fire_positions.push_back([fire_win_size * i + fire_win_size / 2, OFFSET_Y * 2])
 	HitBox.hide()
 	HPBar.hide()
-	update_hp_bar()
+	HPBar.max_value = max_hp
+	HPBar.value = hp
 	
 	add_to_group("enemies")
 	self.add_child(hurtSoundEffect)
@@ -132,6 +133,15 @@ func _physics_process(delta):
 	else:
 		fire_cooldown += delta
 		process_fire()
+		
+	if HPBar.value != hp:
+		var diff = hp - HPBar.value
+		if diff > 0:
+			HPBar.value += max(diff * delta * 5, delta)
+			HPBar.value = min(HPBar.value, hp)
+		elif diff < 0:
+			HPBar.value -= max(-diff * delta * 5, delta)
+			HPBar.value = max(HPBar.value, hp)
 
 func process_fire():
 	var damage_percent = (max_hp - hp) / float(max_hp)
@@ -170,12 +180,8 @@ func hurt(damage):
 		hurtSoundEffect.volume_db = -5
 		hurtSoundEffect.play()
 		hp -= damage
-		update_hp_bar()
 
-		if hp <= 0:		
+		if hp <= 0:
 			kill()
 			if Parent.has_method("increaseScore"):
 				Parent.increaseScore(max_hp)
-			
-func update_hp_bar():
-	HPBar.value = round(float(hp) / max_hp * 100)

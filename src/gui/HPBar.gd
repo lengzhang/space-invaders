@@ -1,15 +1,25 @@
 extends ProgressBar
 
-onready var percentage = $Value
+onready var Bar = $"."
+onready var Percentage = $Value
 
-var maxHPValue = 100
-var hpValue = 100
+onready var percentage = GameManager.hp
 
 func _ready():
-	max_value = maxHPValue
-	setHealth(100)
+	update_bar()
+	max_value = 100
+	value = percentage
 	
-func setHealth(hp):
-	hpValue = hp
-	value = round(float(hp) / maxHPValue * 100)
-	percentage.text = String(value)
+func _process(delta):
+	update_bar()
+	var diff = percentage - value
+	if diff > 0:
+		value += max(diff * delta * 5, delta)
+		value = min(value, percentage)
+	elif diff < 0:
+		value -= max(-diff * delta * 5, delta)
+		value = max(value, percentage)
+	
+func update_bar():
+	percentage = min(round(float(GameManager.hp) / GameManager.max_hp * 100), 100)
+	Percentage.text = String(percentage)
