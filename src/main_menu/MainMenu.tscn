@@ -223,7 +223,7 @@ motion_mirroring = Vector2( 0, 2500 )
 position = Vector2( 105.208, -87.5814 )
 z_index = 1
 frames = SubResource( 31 )
-frame = 1
+frame = 27
 playing = true
 
 [node name="asteroid2" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -231,7 +231,7 @@ position = Vector2( 370.496, 129.9 )
 rotation = -1.52891
 z_index = 1
 frames = SubResource( 31 )
-frame = 1
+frame = 27
 playing = true
 
 [node name="asteroid3" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -239,6 +239,7 @@ position = Vector2( 113.604, 218.579 )
 rotation = 2.20784
 z_index = 1
 frames = SubResource( 31 )
+frame = 26
 playing = true
 
 [node name="asteroid4" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -246,7 +247,7 @@ position = Vector2( 91.7786, 730.818 )
 rotation = 3.31613
 z_index = 1
 frames = SubResource( 31 )
-frame = 29
+frame = 25
 playing = true
 
 [node name="asteroid5" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -254,7 +255,7 @@ position = Vector2( 374.491, 838.699 )
 rotation = -1.01927
 z_index = 1
 frames = SubResource( 31 )
-frame = 28
+frame = 24
 playing = true
 
 [node name="asteroid6" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -263,7 +264,7 @@ rotation = -2.20784
 scale = Vector2( 2, 1 )
 z_index = 1
 frames = SubResource( 31 )
-frame = 27
+frame = 23
 playing = true
 
 [node name="asteroid7" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -272,7 +273,7 @@ rotation = 0.708604
 scale = Vector2( 1, 2 )
 z_index = 1
 frames = SubResource( 31 )
-frame = 27
+frame = 23
 playing = true
 
 [node name="asteroid8" type="AnimatedSprite" parent="ParallaxBackground2/ParallaxLayer"]
@@ -280,7 +281,7 @@ position = Vector2( 357.986, 1199.51 )
 rotation = 2.71748
 z_index = 1
 frames = SubResource( 31 )
-frame = 26
+frame = 22
 playing = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]

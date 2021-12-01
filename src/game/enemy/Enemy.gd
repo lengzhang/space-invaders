@@ -50,9 +50,9 @@ func hurt(damage):
 func onExitedBody(body):
 	if body.name == "Wall":
 		if isInGame:
-			if Parent.has_method("hurtPlayer"):
-				Parent.hurtPlayer()
-			isInGame = false
+#			if Parent.has_method("hurtPlayer"):
+#				Parent.hurtPlayer()
+#			isInGame = false
 			queue_free()
 		else:
 			isInGame = true
