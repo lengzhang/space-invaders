@@ -47,6 +47,7 @@ onready var boss_count = 0
 var enemyCoolDown = 0
 var enemyCount = 0
 var waveCount = 0
+var new_level = 1
 
 var is_in_boss = false
 var has_boss = false
@@ -66,18 +67,19 @@ func _ready():
 	startGameSoundEffect.play()
 
 func _process(delta):
-	var new_level = GameManager.level
 	if new_level < 5:
 		new_level = (
-			1 if waveCount < 5
-			else 2 if waveCount < 10
-			else 3 if waveCount < 20
-			else 4 if waveCount < 35
+			1 if waveCount < 10
+			else 2 if waveCount < 15
+			else 3 if waveCount < 22
+			else 4 if waveCount < 30
 			else 5
 		)
 	else:
-		if (waveCount > (new_level + 2)*(new_level + 3)): #Formula to determine the level
-			new_level += 1
+		if (waveCount > (new_level)*(new_level + 3)): #Formula to determine the level
+			if is_in_boss:
+				if !has_boss:
+					generateBoss()
 			
 	if GameManager.level != new_level:
 		GameManager.level = new_level
@@ -94,16 +96,9 @@ func _process(delta):
 			else 3 if GameManager.level <= 9
 			else 2 if GameManager.level <= 19
 			else 1
-		)
-		
-		if is_in_boss:
-			if !has_boss:
-				generateBoss()
-				enemyCoolDown = 0
-		else:
+		)	
+		if !has_boss:
 			generateEnemy()
-			
-			
 		generatePowerups()
 
 func generateEnemy():
@@ -204,6 +199,7 @@ func generateBoss():
 func killed_boss():
 	startGameSoundEffect.play()
 	bossBackgroundMusic.stop()
+	new_level = new_level + 1;
 	is_in_boss = false
 	has_boss = false
 	enemyCoolDown = 0

@@ -6,7 +6,7 @@ onready var HPBar: ProgressBar = $HPBar
 # Sound Effect
 onready var hurtSoundEffect = AudioStreamPlayer.new()
 
-var max_hp = 150
+var max_hp = 1150
 var hp = max_hp
 var moveSpeed = 25
 var attack = 10
