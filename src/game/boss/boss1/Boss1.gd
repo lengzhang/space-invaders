@@ -81,6 +81,7 @@ onready var max_hp = MAX_HP * GameManager.level * 3
 onready var hp = max_hp
 onready var attack = 1000 + (50 * GameManager.level)
 
+var alreadyRun = false
 var stage = 0
 var waves_index = 0
 var fire_cooldown = 0
@@ -183,5 +184,8 @@ func hurt(damage):
 
 		if hp <= 0:
 			kill()
+			if !alreadyRun:
+				GameManager.level += 1
+				alreadyRun = true
 			if Parent.has_method("increaseScore"):
 				Parent.increaseScore(max_hp)

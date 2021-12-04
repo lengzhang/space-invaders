@@ -75,17 +75,18 @@ func _process(delta):
 			else 4 if waveCount < 30
 			else 5
 		)
+		GameManager.level = new_level
 	else:
+		is_in_boss = true
 		if (waveCount > (new_level)*(new_level + 3)): #Formula to determine the level
 			if is_in_boss:
 				if !has_boss:
 					generateBoss()
-			
-	if GameManager.level != new_level:
-		GameManager.level = new_level
+	if new_level != GameManager.level:
+		new_level = GameManager.level
+		
+	if Level.text != String(GameManager.level):
 		Level.text = String(GameManager.level)
-		if GameManager.level > 4:
-			is_in_boss = true
 	
 	enemyCoolDown -= delta
 		
@@ -199,8 +200,7 @@ func generateBoss():
 func killed_boss():
 	startGameSoundEffect.play()
 	bossBackgroundMusic.stop()
-	new_level = new_level + 1;
-	is_in_boss = false
+	is_in_boss = true
 	has_boss = false
 	enemyCoolDown = 0
 	
